@@ -8,11 +8,9 @@ const LogoArea = styled.div`
 
 export default function LogoMenu() {
   return (
-    <>
-      <LogoArea>
-        <Logo />
-        <LogoLinks />
-      </LogoArea>
-    </>
+    <LogoArea>
+      <Logo />
+      <LogoLinks />
+    </LogoArea>
   );
 }

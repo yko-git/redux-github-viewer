@@ -9,10 +9,8 @@ const H1 = styled.h1`
 
 export default function Logo() {
   return (
-    <>
-      <LogoLink a herf="/">
-        <H1>Github Viewer</H1>
-      </LogoLink>
-    </>
+    <LogoLink a herf="/">
+      <H1>Github Viewer</H1>
+    </LogoLink>
   );
 }
