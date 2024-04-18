@@ -1,9 +1,10 @@
 import "./App.css";
+import Header from "./components/organisms/Header";
 
 function App() {
   return (
     <div className="App">
-      <h1>Github Viewer</h1>
+      <Header />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
