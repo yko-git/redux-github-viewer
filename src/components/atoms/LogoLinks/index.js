@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoLinksItem = styled.a`
-  color: red;
+  color: white;
 `;
 
 export default function LogoLinks() {

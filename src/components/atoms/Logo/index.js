@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoLink = styled.a`
-  color: red;
+  color: white;
 `;
 const H1 = styled.h1`
   font-size: 2rem;
