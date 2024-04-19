@@ -6,6 +6,12 @@ import { useState } from "react";
 const HeaderNavArea = styled.div`
   //   display: flex;
 `;
+const NavWrapper = styled.div`
+  display: none;
+  .active & {
+    display: block;
+  }
+`;
 
 export default function HeaderNav() {
   const [navClick, setNavClick] = useState("hidden");
@@ -18,9 +24,11 @@ export default function HeaderNav() {
     }
   }
   return (
-    <HeaderNavArea className={navClick} onClick={handleClick}>
+    <HeaderNavArea class={navClick} onClick={handleClick}>
       <NavIcon />
-      <NavList />
+      <NavWrapper>
+        <NavList />
+      </NavWrapper>
     </HeaderNavArea>
   );
 }

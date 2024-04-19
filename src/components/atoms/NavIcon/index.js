@@ -2,8 +2,10 @@ import { IconContext } from "react-icons";
 import styled from "styled-components";
 import { FiMenu } from "react-icons/fi";
 
-const NavIconArea = styled.button`
+const NavIconArea = styled.div`
   color: white;
+  display: inline-block;
+  cusor: pointer;
 `;
 
 export default function NavIcon() {
