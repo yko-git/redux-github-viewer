@@ -2,7 +2,7 @@ import { IconContext } from "react-icons";
 import styled from "styled-components";
 import { FiMenu } from "react-icons/fi";
 
-const NavIconArea = styled.i`
+const NavIconArea = styled.button`
   color: white;
 `;
 

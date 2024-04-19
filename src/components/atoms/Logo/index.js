@@ -10,7 +10,7 @@ const LogoLinkItem = styled.h1`
 
 export default function Logo() {
   return (
-    <LogoLink a herf="/">
+    <LogoLink>
       <LogoLinkItem>Github Viewer</LogoLinkItem>
     </LogoLink>
   );
