@@ -1,18 +1,24 @@
 import styled from "styled-components";
 
-const LogoLinksItem = styled.a`
+const LogoLinksList = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style: none;
+`;
+const LogoLinksItem = styled.li`
   color: white;
+  margin-right: 16px;
 `;
 
 export default function LogoLinks() {
   return (
-    <>
-      <LogoLinksItem a herf="/">
-        Issue
+    <LogoLinksList>
+      <LogoLinksItem>
+        <a herf="/">Issue</a>
       </LogoLinksItem>
-      <LogoLinksItem a herf="/">
-        Pull Request
+      <LogoLinksItem>
+        <a herf="/">Pull Request</a>
       </LogoLinksItem>
-    </>
+    </LogoLinksList>
   );
 }

@@ -3,14 +3,15 @@ import styled from "styled-components";
 const LogoLink = styled.a`
   color: white;
 `;
-const H1 = styled.h1`
-  font-size: 2rem;
+const LogoLinkItem = styled.h1`
+  margin: 0;
+  padding: 0;
 `;
 
 export default function Logo() {
   return (
     <LogoLink a herf="/">
-      <H1>Github Viewer</H1>
+      <LogoLinkItem>Github Viewer</LogoLinkItem>
     </LogoLink>
   );
 }

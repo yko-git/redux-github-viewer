@@ -4,6 +4,7 @@ import LogoLinks from "../../atoms/LogoLinks";
 
 const LogoArea = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export default function LogoMenu() {
