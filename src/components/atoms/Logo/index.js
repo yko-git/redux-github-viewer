@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const LogoLink = styled.a`
   color: white;
+  display: inline-block;
 `;
 const LogoLinkItem = styled.h1`
   margin: 0;

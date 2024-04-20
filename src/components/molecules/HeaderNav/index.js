@@ -3,9 +3,6 @@ import NavIcon from "../../atoms/NavIcon";
 import NavList from "../../atoms/NavList";
 import { useState } from "react";
 
-const HeaderNavArea = styled.div`
-  //   display: flex;
-`;
 const NavWrapper = styled.div`
   display: none;
   .active & {
@@ -24,11 +21,11 @@ export default function HeaderNav() {
     }
   }
   return (
-    <HeaderNavArea class={navClick} onClick={handleClick}>
+    <div class={navClick} onClick={handleClick}>
       <NavIcon />
       <NavWrapper>
         <NavList />
       </NavWrapper>
-    </HeaderNavArea>
+    </div>
   );
 }

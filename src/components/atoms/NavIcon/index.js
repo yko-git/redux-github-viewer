@@ -5,7 +5,7 @@ import { FiMenu } from "react-icons/fi";
 const NavIconArea = styled.div`
   color: white;
   display: inline-block;
-  cusor: pointer;
+  cursor: pointer;
 `;
 
 export default function NavIcon() {

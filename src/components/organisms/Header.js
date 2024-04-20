@@ -7,6 +7,7 @@ const HeaderArea = styled.div`
   padding: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export default function Header() {
