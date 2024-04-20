@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import LogoMenu from "../molecules/LogoMenu";
-import HeaderNav from "../molecules/HeaderNav";
+import LogoMenu from "../../molecules/LogoMenu";
+import HeaderNav from "../../molecules/HeaderNav";
 
 const HeaderArea = styled.div`
   background-color: #333333;

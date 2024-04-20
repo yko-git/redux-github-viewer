@@ -1,10 +1,12 @@
 import "./App.css";
 import Header from "./components/organisms/Header";
+import TabBlock from "./components/organisms/TabBlock";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <TabBlock />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
