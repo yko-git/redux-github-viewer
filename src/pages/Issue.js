@@ -1,12 +1,20 @@
+import styled from "styled-components";
 import IssueBlock from "../components/organisms/IssueBlock";
 import Header from "../components/organisms/Header";
+const TabWrapper = styled.div`
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 32px 16px;
+`;
 
 function Profile() {
   return (
-    <div>
+    <>
       <Header />
-      <IssueBlock />
-    </div>
+      <TabWrapper>
+        <IssueBlock />
+      </TabWrapper>
+    </>
   );
 }
 
