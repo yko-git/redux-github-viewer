@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const LogoLinksList = styled.ul`
@@ -15,10 +14,10 @@ export default function LogoLinks() {
   return (
     <LogoLinksList>
       <LogoLinksItem>
-        <Link to="issue">Issue</Link>
+        <a herf="/profile/">Issue</a>
       </LogoLinksItem>
       <LogoLinksItem>
-        <Link to="pullrequest">Pull Request</Link>
+        <a herf="/">Pull Request</a>
       </LogoLinksItem>
     </LogoLinksList>
   );
