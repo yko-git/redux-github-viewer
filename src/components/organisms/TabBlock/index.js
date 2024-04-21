@@ -20,14 +20,15 @@ const TabLinkItem = styled.li`
   padding: 16px;
   cursor: pointer;
   width: 100%;
-  border-bottom: 1px solid rgb(225, 228, 232);
-  &.active {
-    border-radius: 6px 6px 0px 0px;
-    border-top: 1px solid rgb(225, 228, 232);
-    border-right: 1px solid rgb(225, 228, 232);
-    border-left: 1px solid rgb(225, 228, 232);
-    border-bottom: none;
-  }
+  border-bottom: ${(props) =>
+    props.activeTab ? "none" : "1px solid rgb(225, 228, 232)"};
+  border-top: ${(props) =>
+    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
+  border-right: ${(props) =>
+    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
+  border-left: ${(props) =>
+    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
+  border-radius: ${(props) => (props.activeTab ? "6px 6px 0px 0px" : "none")};
 `;
 
 export default function TabBlock() {
@@ -42,9 +43,7 @@ export default function TabBlock() {
             <TabLinkItem
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`TabLinkItem ${
-                tab === activeTab ? "active" : "hidden"
-              }`}
+              activeTab={activeTab === tab}
             >
               {tab}
             </TabLinkItem>
