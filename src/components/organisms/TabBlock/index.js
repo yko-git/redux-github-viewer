@@ -11,6 +11,7 @@ const TabWrapper = styled.div`
 
 const TabLinks = styled.ul`
   display: flex;
+  padding: 0;
 `;
 
 const TabLinkItem = styled.li`
