@@ -5,9 +5,9 @@ import Profile from "./pages/Profile";
 import Issue from "./pages/Issue";
 
 const routesBasic = createBrowserRouter([
-  { path: "/", element: <TopPage /> },
-  { path: "/profile", element: <Profile /> },
-  { path: "/issue", element: <Issue /> },
+  { path: "/redux-github-viewer/", element: <TopPage /> },
+  { path: "/redux-github-viewer/profile", element: <Profile /> },
+  { path: "/redux-github-viewer/issue", element: <Issue /> },
 ]);
 
 export default routesBasic;
