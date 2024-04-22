@@ -1,7 +1,3 @@
 export default function PullRequestBlock() {
-  return (
-    <>
-      <div>Pull Request</div>
-    </>
-  );
+  return <div>Pull Request</div>;
 }

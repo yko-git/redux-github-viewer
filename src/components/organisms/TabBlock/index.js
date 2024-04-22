@@ -37,23 +37,19 @@ export default function TabBlock() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
-    <>
-      <TabWrapper>
-        <TabLinks>
-          {tabs.map((tab) => (
-            <TabLinkItem
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              activeTab={activeTab === tab}
-            >
-              {tab}
-            </TabLinkItem>
-          ))}
-        </TabLinks>
-        <div>
-          {activeTab === tabs[0] ? <IssueBlock /> : <PullRequestBlock />}
-        </div>
-      </TabWrapper>
-    </>
+    <TabWrapper>
+      <TabLinks>
+        {tabs.map((tab) => (
+          <TabLinkItem
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            activeTab={activeTab === tab}
+          >
+            {tab}
+          </TabLinkItem>
+        ))}
+      </TabLinks>
+      <div>{activeTab === tabs[0] ? <IssueBlock /> : <PullRequestBlock />}</div>
+    </TabWrapper>
   );
 }

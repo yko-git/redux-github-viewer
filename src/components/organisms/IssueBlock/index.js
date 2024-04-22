@@ -1,7 +1,3 @@
 export default function IssueBlock() {
-  return (
-    <>
-      <div>Issueが入ります</div>
-    </>
-  );
+  return <div>Issueが入ります</div>;
 }

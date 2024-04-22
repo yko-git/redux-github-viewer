@@ -10,12 +10,10 @@ const NavIconArea = styled.div`
 
 export default function NavIcon() {
   return (
-    <>
-      <NavIconArea>
-        <IconContext.Provider value={{ size: "20px" }}>
-          <FiMenu />
-        </IconContext.Provider>
-      </NavIconArea>
-    </>
+    <NavIconArea>
+      <IconContext.Provider value={{ size: "20px" }}>
+        <FiMenu />
+      </IconContext.Provider>
+    </NavIconArea>
   );
 }
