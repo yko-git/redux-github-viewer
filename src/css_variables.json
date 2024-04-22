@@ -1,0 +1,10 @@
+{
+  "variable": {
+    "baseColor": "#ff0000",
+    "textColor": "#333",
+    "textColor_w": "#fff",
+    "bgColor_g": "#eee",
+    "textSize": "14px",
+    "lineHeight": "1.5"
+  }
+}

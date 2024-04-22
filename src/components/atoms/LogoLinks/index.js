@@ -10,14 +10,22 @@ const LogoLinksItem = styled.li`
   margin-right: 16px;
 `;
 
+const LogoLinksLink = styled.a`
+  color: white;
+`;
+
 export default function LogoLinks() {
   return (
     <LogoLinksList>
       <LogoLinksItem>
-        <a herf="/profile/">Issue</a>
+        <LogoLinksLink as="a" herf="/issue/">
+          Issue
+        </LogoLinksLink>
       </LogoLinksItem>
       <LogoLinksItem>
-        <a herf="/">Pull Request</a>
+        <LogoLinksLink as="a" herf="/pullrequest/">
+          Pull Request
+        </LogoLinksLink>
       </LogoLinksItem>
     </LogoLinksList>
   );
