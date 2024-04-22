@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/organisms/Header";
 import TabBlock from "./components/organisms/TabBlock";
 
