@@ -32,8 +32,9 @@ const TabLinkItem = styled.li`
   border-radius: ${(props) => (props.activeTab ? "6px 6px 0px 0px" : "none")};
 `;
 
+const tabs = ["Issue", "Pull Request"];
+
 export default function TabBlock() {
-  const tabs = ["Issue", "Pull Request"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
