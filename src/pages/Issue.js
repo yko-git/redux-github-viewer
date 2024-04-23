@@ -7,7 +7,7 @@ const TabWrapper = styled.div`
   padding: 32px 16px;
 `;
 
-function Profile() {
+function Issue() {
   return (
     <>
       <Header />
@@ -18,4 +18,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Issue;

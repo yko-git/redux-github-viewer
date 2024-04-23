@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const NavListArea = styled.ul`
   position: absolute;
@@ -15,7 +16,7 @@ const NavListArea = styled.ul`
 const NavListItem = styled.li`
   list-style: none;
 `;
-const NavListLink = styled.a`
+const NavListLink = styled(Link)`
   display: block;
   color: #333;
   list-style: none;
@@ -34,23 +35,23 @@ export default function NavList() {
     {
       id: 1,
       name: "Your Profile",
-      link: "/",
+      link: "/profile",
     },
     {
       id: 3,
       name: "Issue",
-      link: "/",
+      link: "/issue",
     },
     {
       id: 4,
       name: "Pull Request",
-      link: "/",
+      link: "/pullrequest",
     },
   ];
 
   const linksList = links.map((value) => (
     <NavListItem key={value.id}>
-      <NavListLink href={value.link}>{value.name}</NavListLink>
+      <NavListLink to={value.link}>{value.name}</NavListLink>
     </NavListItem>
   ));
   return <NavListArea>{linksList}</NavListArea>;

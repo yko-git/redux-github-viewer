@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LogoLinksList = styled.ul`
   display: flex;
@@ -10,22 +11,19 @@ const LogoLinksItem = styled.li`
   margin-right: 16px;
 `;
 
-const LogoLinksLink = styled.a`
+const LogoLinksLink = styled(Link)`
   color: white;
+  text-decoration: none;
 `;
 
 export default function LogoLinks() {
   return (
     <LogoLinksList>
       <LogoLinksItem>
-        <LogoLinksLink as="a" herf="/issue/">
-          Issue
-        </LogoLinksLink>
+        <LogoLinksLink to="/issue/">Issue</LogoLinksLink>
       </LogoLinksItem>
       <LogoLinksItem>
-        <LogoLinksLink as="a" herf="/pullrequest/">
-          Pull Request
-        </LogoLinksLink>
+        <LogoLinksLink to="/pullrequest/">Pull Request</LogoLinksLink>
       </LogoLinksItem>
     </LogoLinksList>
   );

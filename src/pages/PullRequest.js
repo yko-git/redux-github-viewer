@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import ProfileBlock from "../components/organisms/ProfileBlock";
+import PullRequestBlock from "../components/organisms/PullRequestBlock";
 import Header from "../components/organisms/Header";
 const TabWrapper = styled.div`
   max-width: 896px;
@@ -7,13 +7,15 @@ const TabWrapper = styled.div`
   padding: 32px 16px;
 `;
 
-function Profile() {
+function PullRequest() {
   return (
     <>
       <Header />
-      <TabWrapper>profileが入ります</TabWrapper>
+      <TabWrapper>
+        <PullRequestBlock />
+      </TabWrapper>
     </>
   );
 }
 
-export default Profile;
+export default PullRequest;
