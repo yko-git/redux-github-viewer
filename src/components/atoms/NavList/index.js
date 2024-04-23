@@ -25,30 +25,30 @@ const NavListLink = styled(Link)`
   font-size: 1rem;
 `;
 
-export default function NavList() {
-  const links = [
-    {
-      id: 0,
-      name: "Top",
-      link: "/",
-    },
-    {
-      id: 1,
-      name: "Your Profile",
-      link: "/profile",
-    },
-    {
-      id: 3,
-      name: "Issue",
-      link: "/issue",
-    },
-    {
-      id: 4,
-      name: "Pull Request",
-      link: "/pullrequest",
-    },
-  ];
+const links = [
+  {
+    id: 0,
+    name: "Top",
+    link: "/redux-github-viewer/",
+  },
+  {
+    id: 1,
+    name: "Your Profile",
+    link: "/redux-github-viewer/profile",
+  },
+  {
+    id: 3,
+    name: "Issue",
+    link: "/redux-github-viewer/issue",
+  },
+  {
+    id: 4,
+    name: "Pull Request",
+    link: "/redux-github-viewer/pullrequest",
+  },
+];
 
+export default function NavList() {
   const linksList = links.map((value) => (
     <NavListItem key={value.id}>
       <NavListLink to={value.link}>{value.name}</NavListLink>
