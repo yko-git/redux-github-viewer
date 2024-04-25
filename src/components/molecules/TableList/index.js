@@ -25,6 +25,33 @@ const TableTd = styled.td`
 `;
 
 export default function TableList() {
+  const issueData = [
+    {
+      id: "0",
+      name: "test",
+      status: "Open",
+      author: "",
+      createday: "04-24-2024",
+      updateday: "04-24-2024",
+    },
+    {
+      id: "1",
+      name: "test2",
+      status: "Open",
+      author: "",
+      createday: "04-24-2024",
+      updateday: "04-24-2024",
+    },
+    {
+      id: "2",
+      name: "test3",
+      status: "Open",
+      author: "",
+      createday: "04-24-2024",
+      updateday: "04-24-2024",
+    },
+  ];
+
   return (
     <TableWrapper>
       <Table>
@@ -41,16 +68,18 @@ export default function TableList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <TableTd $minwidth>
-              <input type="checkbox"></input>
-            </TableTd>
-            <TableTd $width>test</TableTd>
-            <TableTd>Open</TableTd>
-            <TableTd></TableTd>
-            <TableTd>04-24-2024</TableTd>
-            <TableTd>04-24-2024</TableTd>
-          </tr>
+          {issueData.map((value) => (
+            <tr>
+              <TableTd $minwidth>
+                <input id={value.id} type="checkbox"></input>
+              </TableTd>
+              <TableTd $width>{value.name}</TableTd>
+              <TableTd>{value.status}</TableTd>
+              <TableTd>{value.author}</TableTd>
+              <TableTd>{value.createday}</TableTd>
+              <TableTd>{value.updateday}</TableTd>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </TableWrapper>
