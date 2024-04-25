@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import issueData from "../../../utils/issueData";
+import { useState } from "react";
+import FilterForm from "../FilterForm";
 
 const TableWrapper = styled.div`
   overflow: scroll;
@@ -25,63 +28,42 @@ const TableTd = styled.td`
 `;
 
 export default function TableList() {
-  const issueData = [
-    {
-      id: "0",
-      name: "test",
-      status: "Open",
-      author: "",
-      createday: "04-24-2024",
-      updateday: "04-24-2024",
-    },
-    {
-      id: "1",
-      name: "test2",
-      status: "Open",
-      author: "",
-      createday: "04-24-2024",
-      updateday: "04-24-2024",
-    },
-    {
-      id: "2",
-      name: "test3",
-      status: "Open",
-      author: "",
-      createday: "04-24-2024",
-      updateday: "04-24-2024",
-    },
-  ];
-
+  const [filterVal, setFilterVal] = useState("");
   return (
-    <TableWrapper>
-      <Table>
-        <thead>
-          <tr>
-            <TableTh $minwidth>
-              <input type="checkbox"></input>
-            </TableTh>
-            <TableTh></TableTh>
-            <TableTh>ステータス</TableTh>
-            <TableTh>作成者</TableTh>
-            <TableTh>作成日付</TableTh>
-            <TableTh>更新日付</TableTh>
-          </tr>
-        </thead>
-        <tbody>
-          {issueData.map((value) => (
+    <>
+      <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
+      <TableWrapper>
+        <Table>
+          <thead>
             <tr>
-              <TableTd $minwidth>
-                <input id={value.id} type="checkbox"></input>
-              </TableTd>
-              <TableTd $width>{value.name}</TableTd>
-              <TableTd>{value.status}</TableTd>
-              <TableTd>{value.author}</TableTd>
-              <TableTd>{value.createday}</TableTd>
-              <TableTd>{value.updateday}</TableTd>
+              <TableTh $minwidth>
+                <input type="checkbox"></input>
+              </TableTh>
+              <TableTh></TableTh>
+              <TableTh>ステータス</TableTh>
+              <TableTh>作成者</TableTh>
+              <TableTh>作成日付</TableTh>
+              <TableTh>更新日付</TableTh>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </TableWrapper>
+          </thead>
+          <tbody>
+            {issueData
+              .filter((value) => value.name.indexOf(filterVal) !== -1)
+              .map((value) => (
+                <tr>
+                  <TableTd $minwidth>
+                    <input id={value.id} type="checkbox"></input>
+                  </TableTd>
+                  <TableTd $width>{value.name}</TableTd>
+                  <TableTd>{value.status}</TableTd>
+                  <TableTd>{value.author}</TableTd>
+                  <TableTd>{value.createday}</TableTd>
+                  <TableTd>{value.updateday}</TableTd>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      </TableWrapper>
+    </>
   );
 }
