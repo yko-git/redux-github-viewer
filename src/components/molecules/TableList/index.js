@@ -2,6 +2,17 @@ import styled from "styled-components";
 import issueData from "../../../utils/issueData";
 import { useState } from "react";
 import FilterForm from "../FilterForm";
+import ButtonLink from "../../atoms/Button";
+
+const FilterBlocks = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ButtonLinks = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const TableWrapper = styled.div`
   overflow: scroll;
@@ -27,11 +38,17 @@ const TableTd = styled.td`
   ${(props) => `width: ${props.width}`};
 `;
 
-export default function TableList() {
+export default function TableList({}) {
   const [filterVal, setFilterVal] = useState("");
   return (
     <>
-      <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
+      <FilterBlocks>
+        <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
+        <ButtonLinks>
+          <ButtonLink primary name="New" />
+          <ButtonLink name="Delete" />
+        </ButtonLinks>
+      </FilterBlocks>
       <TableWrapper>
         <Table>
           <thead>
