@@ -12,15 +12,15 @@ import PullRequest from "./pages/PullRequest";
 const routesBasic = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/redux-github-viewer/" element={<TopPage />} />
-      <Route path="/redux-github-viewer/profile" element={<Profile />} />
-      <Route path="/redux-github-viewer/issue" element={<Issue />} />
-      <Route
-        path="/redux-github-viewer/pullrequest"
-        element={<PullRequest />}
-      />
+      <Route path="/" element={<TopPage />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/issue" element={<Issue />} />
+      <Route path="/pullrequest" element={<PullRequest />} />
     </>
-  )
+  ),
+  {
+    basename: "/redux-github-viewer",
+  }
 );
 
 export default routesBasic;

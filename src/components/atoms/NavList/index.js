@@ -29,22 +29,22 @@ const links = [
   {
     id: 0,
     name: "Top",
-    link: "/redux-github-viewer/",
+    link: "/",
   },
   {
     id: 1,
     name: "Your Profile",
-    link: "/redux-github-viewer/profile",
+    link: "/profile",
   },
   {
     id: 3,
     name: "Issue",
-    link: "/redux-github-viewer/issue",
+    link: "/issue",
   },
   {
     id: 4,
     name: "Pull Request",
-    link: "/redux-github-viewer/pullrequest",
+    link: "/pullrequest",
   },
 ];
 

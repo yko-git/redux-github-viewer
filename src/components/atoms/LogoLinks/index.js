@@ -20,12 +20,10 @@ export default function LogoLinks() {
   return (
     <LogoLinksList>
       <LogoLinksItem>
-        <LogoLinksLink to="/redux-github-viewer/issue/">Issue</LogoLinksLink>
+        <LogoLinksLink to="/issue/">Issue</LogoLinksLink>
       </LogoLinksItem>
       <LogoLinksItem>
-        <LogoLinksLink to="/redux-github-viewer/pullrequest/">
-          Pull Request
-        </LogoLinksLink>
+        <LogoLinksLink to="/pullrequest/">Pull Request</LogoLinksLink>
       </LogoLinksItem>
     </LogoLinksList>
   );

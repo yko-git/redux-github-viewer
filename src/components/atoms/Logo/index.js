@@ -13,7 +13,7 @@ const LogoLinkItem = styled.h1`
 
 export default function Logo() {
   return (
-    <LogoLink to="/redux-github-viewer/">
+    <LogoLink to="/">
       <LogoLinkItem>Github Viewer</LogoLinkItem>
     </LogoLink>
   );
