@@ -1,13 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider } from "react-router-dom";
+import routesBasic from "./routesBasic";
+import { createGlobalStyle } from "styled-components";
+import cssVariables from "./css_variables";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const variable = cssVariables.variable;
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: ${variable.textSize};
+    color: ${variable.textColor};
+    line-height: ${variable.lineHeight};
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+    a {
+        color: ${variable.textColor};
+    }
+  }
+`;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <RouterProvider router={routesBasic} />
   </React.StrictMode>
 );
 

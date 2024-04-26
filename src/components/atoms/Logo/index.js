@@ -1,18 +1,20 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const LogoLink = styled.a`
-  color: red;
+const LogoLink = styled(Link)`
+  color: white;
+  display: inline-block;
+  text-decoration: none;
 `;
-const H1 = styled.h1`
-  font-size: 2rem;
+const LogoLinkItem = styled.h1`
+  margin: 0;
+  padding: 0;
 `;
 
 export default function Logo() {
   return (
-    <>
-      <LogoLink a herf="/">
-        <H1>Github Viewer</H1>
-      </LogoLink>
-    </>
+    <LogoLink to="/">
+      <LogoLinkItem>Github Viewer</LogoLinkItem>
+    </LogoLink>
   );
 }
