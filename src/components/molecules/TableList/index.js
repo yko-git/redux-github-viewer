@@ -3,6 +3,7 @@ import issueData from "../../../utils/issueData";
 import { useState } from "react";
 import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
+import ModalBlock from "../../organisms/ModalBlock";
 
 const FilterBlocks = styled.div`
   display: flex;
@@ -38,14 +39,14 @@ const TableTd = styled.td`
   ${(props) => `width: ${props.width}`};
 `;
 
-export default function TableList({}) {
+export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
   return (
     <>
       <FilterBlocks>
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
-          <ButtonLink primary name="New" />
+          <ModalBlock />
           <ButtonLink name="Delete" />
         </ButtonLinks>
       </FilterBlocks>
@@ -67,7 +68,7 @@ export default function TableList({}) {
             {issueData
               .filter((value) => value.name.indexOf(filterVal) !== -1)
               .map((value) => (
-                <tr>
+                <tr key={value.id}>
                   <TableTd $minwidth>
                     <input id={value.id} type="checkbox"></input>
                   </TableTd>

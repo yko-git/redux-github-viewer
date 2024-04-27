@@ -20,6 +20,10 @@ const ButtonLink = styled.div`
       : "2px solid rgb(175, 28, 42)"};
 `;
 
-export default function Button({ name, primary }) {
-  return <ButtonLink primary={primary}>{name}</ButtonLink>;
+export default function Button({ name, primary, handleClick }) {
+  return (
+    <ButtonLink primary={primary} onClick={handleClick}>
+      {name}
+    </ButtonLink>
+  );
 }
