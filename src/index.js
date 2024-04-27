@@ -5,6 +5,8 @@ import { RouterProvider } from "react-router-dom";
 import routesBasic from "./routesBasic";
 import { createGlobalStyle } from "styled-components";
 import cssVariables from "./css_variables";
+import store from "./store";
+import { Provider } from "react-redux";
 
 const variable = cssVariables.variable;
 
@@ -12,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Lato, "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
     font-size: ${variable.textSize};
     color: ${variable.textColor};
     line-height: ${variable.lineHeight};
@@ -20,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     a {
-        color: ${variable.textColor};
+        color: ${variable.textColor_a};
     }
   }
 `;
@@ -29,7 +31,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RouterProvider router={routesBasic} />
+    <Provider store={store}>
+      <RouterProvider router={routesBasic} />
+    </Provider>
   </React.StrictMode>
 );
 

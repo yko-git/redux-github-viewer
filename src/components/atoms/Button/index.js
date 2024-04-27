@@ -3,7 +3,6 @@ import styled from "styled-components";
 const ButtonLink = styled.div`
   cursor: pointer;
   display: block;
-  width: 100%;
   text-align: center;
   padding: 4px 16px;
   margin: 4px;
