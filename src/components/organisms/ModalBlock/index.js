@@ -34,7 +34,7 @@ const ModalBlock = () => {
 
   return (
     <>
-      <ButtonLink primary="true" name="Open" handleClick={openModal} />
+      <ButtonLink primary="true" name="New" handleClick={openModal} />
       <ModalWrapper isOpen={modalIsOpen}>
         <ModalInner>
           <Link onClick={() => setIsOpen(false)}>閉じる</Link>
