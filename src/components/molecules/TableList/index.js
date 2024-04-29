@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import issueData from "../../../utils/issueData";
 import { useState } from "react";
 import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
 import ModalBlock from "../../organisms/ModalBlock";
+import { useSelector, useDispatch } from "react-redux";
 
 const FilterBlocks = styled.div`
   display: flex;
@@ -41,13 +41,49 @@ const TableTd = styled.td`
 
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
+
+  const lists = useSelector((state) => state.lists);
+  const dispatch = useDispatch();
+
+  const deleteList = (name) => {
+    dispatch({ type: "DELETE_LIST", payload: name });
+  };
+
+  const [name, setName] = useState("");
+  const [complete, setComplete] = useState(false);
+
+  const inputText = (e) => {
+    setName(e.target.value);
+  };
+
+  const addList = () => {
+    if (!name) return;
+
+    setComplete(false);
+
+    dispatch({
+      type: "ADD_LIST",
+      payload: {
+        name,
+        complete,
+      },
+    });
+    setName("");
+  };
+
+  function deleteClick(e) {
+    // debugger;
+    deleteList(e.name);
+    console.log(e.name);
+  }
+
   return (
     <>
       <FilterBlocks>
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
-          <ModalBlock />
-          <ButtonLink name="Delete" />
+          <ModalBlock name={name} inputText={inputText} addList={addList} />
+          <ButtonLink name="Delete" handleClick={deleteClick} />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>
@@ -65,12 +101,18 @@ export default function TableList() {
             </tr>
           </thead>
           <tbody>
-            {issueData
+            {lists
               .filter((value) => value.name.indexOf(filterVal) !== -1)
               .map((value) => (
                 <tr key={value.id}>
                   <TableTd $minwidth>
-                    <input id={value.id} type="checkbox"></input>
+                    <input
+                      id={value.id}
+                      value={value.name}
+                      name={value.name}
+                      type="checkbox"
+                    ></input>
+                    {/* <button onClick={() => deleteList(value.name)}>削除</button> */}
                   </TableTd>
                   <TableTd $width>{value.name}</TableTd>
                   <TableTd>{value.status}</TableTd>

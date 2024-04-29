@@ -79,7 +79,7 @@ const CloseLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ModalBlock = () => {
+const ModalBlock = ({ name, inputText, addList }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -96,7 +96,11 @@ const ModalBlock = () => {
             <InputBlock>
               <InputLavel>タイトル</InputLavel>
               <TextField>
-                <Input placeholder="タイトルを入力してください"></Input>
+                <Input
+                  placeholder="タイトルを入力してください"
+                  value={name}
+                  onChange={inputText}
+                ></Input>
               </TextField>
             </InputBlock>
             <InputBlock>
@@ -107,7 +111,10 @@ const ModalBlock = () => {
             </InputBlock>
           </InputArea>
           <Buttons>
-            <ButtonLink primary={true} name="作成" />
+            <div onClick={addList}>
+              <ButtonLink primary={true} name="作成" />
+            </div>
+
             <CloseLink onClick={() => setIsOpen(false)}>閉じる</CloseLink>
           </Buttons>
         </ModalInner>
