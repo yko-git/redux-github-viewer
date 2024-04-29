@@ -71,10 +71,11 @@ export default function TableList() {
     setName("");
   };
 
+  const [form, setForm] = useState([]);
+
   function deleteClick(e) {
-    // debugger;
-    deleteList(e.name);
-    console.log(e.name);
+    deleteList(form.name);
+    console.log(e);
   }
 
   return (
@@ -83,7 +84,7 @@ export default function TableList() {
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
           <ModalBlock name={name} inputText={inputText} addList={addList} />
-          <ButtonLink name="Delete" handleClick={deleteClick} />
+          <ButtonLink name="Delete" onClick={deleteClick} />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>
@@ -111,8 +112,8 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
+                      onChange={() => deleteList(value.name)}
                     ></input>
-                    {/* <button onClick={() => deleteList(value.name)}>削除</button> */}
                   </TableTd>
                   <TableTd $width>{value.name}</TableTd>
                   <TableTd>{value.status}</TableTd>
