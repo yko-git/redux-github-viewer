@@ -1,19 +1,6 @@
 import styled from "styled-components";
-import { variant } from "styled-system";
 
-const variants = {
-  new: {
-    backgroundColor: "rgb(66, 195, 96)",
-    borderBottom: "2px solid rgb(40, 167, 69)",
-  },
-  delete: {
-    backgroundColor: "rgb(215, 58, 73)",
-    borderBottom: "2px solid rgb(175, 28, 42)",
-  },
-};
-
-export const ButtonLink = styled.div`
-  ${variant({ variants })}
+const ButtonLink = styled.div`
   cursor: pointer;
   display: block;
   text-align: center;
@@ -24,12 +11,18 @@ export const ButtonLink = styled.div`
   color: white;
   text-decoration: none;
   font-size: 1rem;
+  background: ${(props) =>
+    props.variant ? "rgb(66, 195, 96)" : "rgb(215, 58, 73)"};
+  border-bottom: ${(props) =>
+    props.variant
+      ? "2px solid rgb(40, 167, 69)"
+      : "2px solid rgb(175, 28, 42)"};
 `;
 
-ButtonLink.defaultProps = {
-  variant: "new",
-};
-
-export default function Button({ children, handleClick }) {
-  return <ButtonLink onClick={handleClick}>{children}</ButtonLink>;
+export default function Button({ children, variant, handleClick }) {
+  return (
+    <ButtonLink variant={variant} onClick={handleClick}>
+      {children}
+    </ButtonLink>
+  );
 }
