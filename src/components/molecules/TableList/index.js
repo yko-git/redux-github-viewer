@@ -43,6 +43,7 @@ const TableTd = styled.td`
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
   const [text, setText] = useState("");
+  const [todo, setTodo] = useState([]);
 
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -58,9 +59,21 @@ export default function TableList() {
     }
   };
 
-  const handleDeleteTodo = (id) => {
-    console.log(id);
-    dispatch(deleteTodo(id));
+  // const handleDeleteTodo = (id) => {
+  //   console.log(id);
+  //   dispatch(deleteTodo(id));
+  // };
+
+  const changeCheckbox = (id) => {
+    const newTodo = [...todos];
+    const list = newTodo.find((list) => list.id === id);
+    list.isChecked = !list.isChecked;
+    setTodo(newTodo);
+  };
+
+  const deleteChecked = () => {
+    const newTodo = todo.filter((todo) => !todo.isChecked);
+    setTodo(newTodo);
   };
 
   return (
@@ -76,7 +89,7 @@ export default function TableList() {
           <ButtonLink
             children="Delete"
             variant={false}
-            onClick={handleDeleteTodo}
+            onClick={deleteChecked}
           />
         </ButtonLinks>
       </FilterBlocks>
@@ -105,7 +118,9 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
-                    ></input>
+                      checked={value.isChecked}
+                      onChange={() => changeCheckbox(value.id)}
+                    />
                   </TableTd>
                   <TableTd $width>{value.text}</TableTd>
                   <TableTd>{value.status}</TableTd>
