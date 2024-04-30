@@ -84,7 +84,11 @@ export default function TableList() {
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
           <ModalBlock name={name} inputText={inputText} addList={addList} />
-          <ButtonLink name="Delete" onClick={deleteClick} />
+          <ButtonLink
+            children="Delete"
+            variant="delete"
+            onClick={deleteClick}
+          />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>

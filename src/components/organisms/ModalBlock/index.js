@@ -88,7 +88,7 @@ const ModalBlock = ({ name, inputText, addList }) => {
 
   return (
     <>
-      <ButtonLink primary="true" name="New" handleClick={openModal} />
+      <ButtonLink children="New" handleClick={openModal} />
       <ModalWrapper isOpen={modalIsOpen}>
         <ModalInner>
           <ModalTitle>Issueを追加</ModalTitle>
@@ -112,7 +112,7 @@ const ModalBlock = ({ name, inputText, addList }) => {
           </InputArea>
           <Buttons>
             <div onClick={addList}>
-              <ButtonLink primary={true} name="作成" />
+              <ButtonLink children="作成" />
             </div>
 
             <CloseLink onClick={() => setIsOpen(false)}>閉じる</CloseLink>
