@@ -4,6 +4,7 @@ import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
 import ModalBlock from "../../organisms/ModalBlock";
 import { useSelector, useDispatch } from "react-redux";
+import { addTodo, deleteTodo } from "../../../storeSlice";
 
 const FilterBlocks = styled.div`
   display: flex;
@@ -41,50 +42,42 @@ const TableTd = styled.td`
 
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
+  const [text, setText] = useState("");
 
-  const lists = useSelector((state) => state.lists);
+  const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
-  const deleteList = (name) => {
-    dispatch({ type: "DELETE_LIST", payload: name });
+  const handleInputChange = (e) => {
+    setText(e.target.value);
   };
 
-  const [name, setName] = useState("");
-  const [complete, setComplete] = useState(false);
-
-  const inputText = (e) => {
-    setName(e.target.value);
+  const handleAddTodo = () => {
+    if (text) {
+      dispatch(addTodo(text));
+      setText("");
+    }
   };
 
-  const addList = () => {
-    if (!name) return;
-
-    setComplete(false);
-
-    dispatch({
-      type: "ADD_LIST",
-      payload: {
-        name,
-        complete,
-      },
-    });
-    setName("");
+  const handleDeleteTodo = (id) => {
+    console.log(id);
+    dispatch(deleteTodo(id));
   };
-
-  const [form, setForm] = useState([]);
-
-  function deleteClick(e) {
-    deleteList(form.name);
-    console.log(e);
-  }
 
   return (
     <>
       <FilterBlocks>
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
-          <ModalBlock name={name} inputText={inputText} addList={addList} />
-          <ButtonLink children="Delete" variant={false} onClick={deleteClick} />
+          <ModalBlock
+            value={text}
+            handleInputChange={handleInputChange}
+            handleAddTodo={handleAddTodo}
+          />
+          <ButtonLink
+            children="Delete"
+            variant={false}
+            onClick={handleDeleteTodo}
+          />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>
@@ -102,8 +95,8 @@ export default function TableList() {
             </tr>
           </thead>
           <tbody>
-            {lists
-              .filter((value) => value.name.indexOf(filterVal) !== -1)
+            {todos
+              .filter((value) => value.text.indexOf(filterVal) !== -1)
               .map((value) => (
                 <tr key={value.id}>
                   <TableTd $minwidth>
@@ -112,10 +105,9 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
-                      onChange={() => deleteList(value.name)}
                     ></input>
                   </TableTd>
-                  <TableTd $width>{value.name}</TableTd>
+                  <TableTd $width>{value.text}</TableTd>
                   <TableTd>{value.status}</TableTd>
                   <TableTd>{value.author}</TableTd>
                   <TableTd>{value.createday}</TableTd>

@@ -1,35 +1,10 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import todoReducer from "../storeSlice";
 
-const initialState = {
-  lists: [
-    {
-      name: "test1",
-      complete: false,
-    },
-    {
-      name: "test2",
-      complete: false,
-    },
-  ],
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_LIST":
-      return {
-        lists: [...state.lists, action.payload],
-      };
-
-    case "DELETE_LIST":
-      return {
-        lists: state.lists.filter((list) => list.name !== action.payload),
-      };
-
-    default:
-      return state;
-  }
-};
-
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: {
+    todos: todoReducer,
+  },
+});
 
 export default store;
