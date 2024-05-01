@@ -71,9 +71,8 @@ export default function TableList() {
     setTodo(newTodo);
   };
 
-  const deleteChecked = () => {
-    const newTodo = todo.filter((todo) => !todo.isChecked);
-    setTodo(newTodo);
+  const deleteChecked = (todo) => {
+    dispatch(deleteTodo(todo));
   };
 
   return (
