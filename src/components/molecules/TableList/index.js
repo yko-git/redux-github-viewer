@@ -124,7 +124,7 @@ export default function TableList() {
               .map((value) => (
                 <TableTr
                   key={value.id}
-                  onClickCapture={() => {
+                  onClick={() => {
                     clickIssue(value.id);
                   }}
                 >
@@ -134,8 +134,11 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
-                      checked={checked[value.id]}
-                      onChangeCapture={() => changeCheckbox(value.id)}
+                      checked={checked[value.id] || false}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        changeCheckbox(value.id);
+                      }}
                     />
                   </TableTd>
                   <TableTd $width>{value.text}</TableTd>
