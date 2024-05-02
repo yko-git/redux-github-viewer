@@ -1,4 +1,5 @@
 import Header from "./components/organisms/Header";
+import ModalBlock from "./components/organisms/ModalBlock";
 import TabBlock from "./components/organisms/TabBlock";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Header />
       <TabBlock />
+      <ModalBlock />
     </div>
   );
 }
