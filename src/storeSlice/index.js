@@ -23,21 +23,12 @@ const store = createSlice({
       state.push(newTodo);
     },
     deleteTodo: (state, action) => {
-      const deleteId = Number(Object.keys(action.payload));
-      // console.log("deleteId = " + deleteId);
-      const newState = JSON.parse(JSON.stringify(state));
-
-      // stateの中のID要素を取り出す
-      const findIndexNum = newState.map((obj) => {
-        return Number(obj.id);
+      Object.keys(action.payload).forEach((id) => {
+        const index = state.findIndex((it) => it.id === id);
+        if (index !== -1) {
+          state.splice(index, 1);
+        }
       });
-
-      // stateのID要素のcheckされたオブジェクト要素のindex番号を変数indexに代入
-      let index = findIndexNum.indexOf(deleteId);
-      // index番号があったらstateから要素を取り除く
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
     },
   },
 });
