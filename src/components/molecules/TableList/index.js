@@ -84,7 +84,7 @@ export default function TableList() {
     dispatch(deleteTodo(checked));
   };
 
-  const test = () => {
+  const clickIssue = () => {
     setIsOpen(true);
   };
 
@@ -122,7 +122,12 @@ export default function TableList() {
             {todos
               .filter((value) => value.text.indexOf(filterVal) !== -1)
               .map((value) => (
-                <TableTr key={value.id} onClick={() => test(value.id)}>
+                <TableTr
+                  key={value.id}
+                  onClick={() => {
+                    clickIssue(value.id);
+                  }}
+                >
                   <TableTd $minwidth>
                     <input
                       id={value.id}
@@ -130,7 +135,10 @@ export default function TableList() {
                       name={value.name}
                       type="checkbox"
                       checked={checked[value.id]}
-                      onChange={() => changeCheckbox(value.id)}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        changeCheckbox(value.id);
+                      }}
                     />
                   </TableTd>
                   <TableTd $width>{value.text}</TableTd>
