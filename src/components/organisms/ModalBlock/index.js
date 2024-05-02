@@ -79,13 +79,14 @@ const CloseLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ModalBlock = ({ text, handleInputChange, handleAddTodo }) => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
+const ModalBlock = ({
+  text,
+  handleInputChange,
+  handleAddTodo,
+  openModal,
+  modalIsOpen,
+  setIsOpen,
+}) => {
   return (
     <>
       <ButtonLink children="New" variant="new" handleClick={openModal} />

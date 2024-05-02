@@ -44,6 +44,11 @@ export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
   const [text, setText] = useState("");
   const [checked, setChecked] = useState({});
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
 
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -56,13 +61,9 @@ export default function TableList() {
     if (text) {
       dispatch(addTodo(text));
       setText("");
+      setIsOpen(false);
     }
   };
-
-  // const handleDeleteTodo = (id) => {
-  //   console.log(id);
-  //   dispatch(deleteTodo(id));
-  // };
 
   const changeCheckbox = (id) => {
     // checkboxの解除の処理
@@ -77,7 +78,6 @@ export default function TableList() {
   };
 
   const deleteChecked = () => {
-    // console.log(checked); //{2: true}
     dispatch(deleteTodo(checked));
   };
 
@@ -90,6 +90,9 @@ export default function TableList() {
             value={text}
             handleInputChange={handleInputChange}
             handleAddTodo={handleAddTodo}
+            modalIsOpen={modalIsOpen}
+            openModal={openModal}
+            setIsOpen={setIsOpen}
           />
           <ButtonLink
             children="Delete"
