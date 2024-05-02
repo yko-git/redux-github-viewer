@@ -43,7 +43,7 @@ const TableTd = styled.td`
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
   const [text, setText] = useState("");
-  const [todo, setTodo] = useState([]);
+  const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -65,14 +65,20 @@ export default function TableList() {
   // };
 
   const changeCheckbox = (id) => {
-    const newTodo = [...todos];
-    const list = newTodo.find((list) => list.id === id);
-    list.isChecked = !list.isChecked;
-    setTodo(newTodo);
+    // checkboxの解除の処理
+    if (checked[id]) {
+      const newChecked = JSON.parse(JSON.stringify(checked));
+      delete newChecked[id];
+      setChecked(newChecked);
+      return;
+    }
+
+    setChecked({ ...checked, [id]: true });
   };
 
-  const deleteChecked = (todo) => {
-    dispatch(deleteTodo(todo));
+  const deleteChecked = () => {
+    // console.log(checked); //{2: true}
+    dispatch(deleteTodo(checked));
   };
 
   return (
@@ -88,7 +94,7 @@ export default function TableList() {
           <ButtonLink
             children="Delete"
             variant={false}
-            onClick={deleteChecked}
+            handleClick={deleteChecked}
           />
         </ButtonLinks>
       </FilterBlocks>
@@ -117,7 +123,7 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
-                      checked={value.isChecked}
+                      checked={checked[value.id]}
                       onChange={() => changeCheckbox(value.id)}
                     />
                   </TableTd>

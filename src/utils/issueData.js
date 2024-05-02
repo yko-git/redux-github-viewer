@@ -1,11 +1,27 @@
 const issueData = [
   {
-    id: "0",
-    name: "test",
+    id: "766436",
+    text: "test1",
     status: "Open",
     author: "",
-    createday: "04-24-2024",
-    updateday: "04-24-2024",
+    createday: "2024/5/1",
+    updateday: "2024/5/1",
+  },
+  {
+    id: "7574",
+    text: "test2",
+    status: "Open",
+    author: "",
+    createday: "2024/5/1",
+    updateday: "2024/5/1",
+  },
+  {
+    id: "888",
+    text: "test3",
+    status: "Open",
+    author: "",
+    createday: "2024/5/1",
+    updateday: "2024/5/1",
   },
 ];
 

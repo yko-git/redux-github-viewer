@@ -22,20 +22,20 @@ const TabLinkItem = styled.li`
   cursor: pointer;
   width: 100%;
   border-bottom: ${(props) =>
-    props.activeTab ? "none" : "1px solid rgb(225, 228, 232)"};
+    props.activetab ? "none" : "1px solid rgb(225, 228, 232)"};
   border-top: ${(props) =>
-    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
+    props.activetab ? "1px solid rgb(225, 228, 232)" : "none"};
   border-right: ${(props) =>
-    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
+    props.activetab ? "1px solid rgb(225, 228, 232)" : "none"};
   border-left: ${(props) =>
-    props.activeTab ? "1px solid rgb(225, 228, 232)" : "none"};
-  border-radius: ${(props) => (props.activeTab ? "6px 6px 0px 0px" : "none")};
+    props.activetab ? "1px solid rgb(225, 228, 232)" : "none"};
+  border-radius: ${(props) => (props.activetab ? "6px 6px 0px 0px" : "none")};
 `;
 
 const tabs = ["Issue", "Pull Request"];
 
 export default function TabBlock() {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activetab, setActivetab] = useState(tabs[0]);
 
   return (
     <TabWrapper>
@@ -43,14 +43,14 @@ export default function TabBlock() {
         {tabs.map((tab) => (
           <TabLinkItem
             key={tab}
-            onClick={() => setActiveTab(tab)}
-            activeTab={activeTab === tab}
+            onClick={() => setActivetab(tab)}
+            activetab={activetab === tab}
           >
             {tab}
           </TabLinkItem>
         ))}
       </TabLinks>
-      <div>{activeTab === tabs[0] ? <IssueBlock /> : <PullRequestBlock />}</div>
+      <div>{activetab === tabs[0] ? <IssueBlock /> : <PullRequestBlock />}</div>
     </TabWrapper>
   );
 }
