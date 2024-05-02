@@ -39,6 +39,9 @@ const TableTd = styled.td`
   width: ${(props) => (props.$width ? "140rem" : "auto")};
   ${(props) => `width: ${props.width}`};
 `;
+const TableTr = styled.tr`
+  cursor: pointer;
+`;
 
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
@@ -46,9 +49,9 @@ export default function TableList() {
   const [checked, setChecked] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -81,6 +84,10 @@ export default function TableList() {
     dispatch(deleteTodo(checked));
   };
 
+  const test = () => {
+    setIsOpen(true);
+  };
+
   return (
     <>
       <FilterBlocks>
@@ -91,14 +98,10 @@ export default function TableList() {
             handleInputChange={handleInputChange}
             handleAddTodo={handleAddTodo}
             modalIsOpen={modalIsOpen}
-            openModal={openModal}
             setIsOpen={setIsOpen}
           />
-          <ButtonLink
-            children="Delete"
-            variant={false}
-            handleClick={deleteChecked}
-          />
+          <ButtonLink children="New" variant="true" handleClick={openModal} />
+          <ButtonLink children="Delete" handleClick={deleteChecked} />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>
@@ -119,7 +122,7 @@ export default function TableList() {
             {todos
               .filter((value) => value.text.indexOf(filterVal) !== -1)
               .map((value) => (
-                <tr key={value.id}>
+                <TableTr key={value.id} onClick={() => test(value.id)}>
                   <TableTd $minwidth>
                     <input
                       id={value.id}
@@ -135,7 +138,7 @@ export default function TableList() {
                   <TableTd>{value.author}</TableTd>
                   <TableTd>{value.createday}</TableTd>
                   <TableTd>{value.updateday}</TableTd>
-                </tr>
+                </TableTr>
               ))}
           </tbody>
         </Table>

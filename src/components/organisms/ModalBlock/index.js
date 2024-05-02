@@ -83,13 +83,11 @@ const ModalBlock = ({
   text,
   handleInputChange,
   handleAddTodo,
-  openModal,
   modalIsOpen,
   setIsOpen,
 }) => {
   return (
     <>
-      <ButtonLink children="New" variant="new" handleClick={openModal} />
       <ModalWrapper isOpen={modalIsOpen}>
         <ModalInner>
           <ModalTitle>Issueを追加</ModalTitle>
@@ -113,7 +111,7 @@ const ModalBlock = ({
           </InputArea>
           <Buttons>
             <div onClick={handleAddTodo}>
-              <ButtonLink variant="new" children="作成" />
+              <ButtonLink variant="true" children="作成" />
             </div>
 
             <CloseLink onClick={() => setIsOpen(false)}>閉じる</CloseLink>
