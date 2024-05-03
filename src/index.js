@@ -7,6 +7,7 @@ import { createGlobalStyle } from "styled-components";
 import cssVariables from "./css_variables";
 import { Provider } from "react-redux";
 import store from "./store";
+import App from "./App";
 
 const variable = cssVariables.variable;
 
@@ -32,7 +33,9 @@ root.render(
   <React.StrictMode>
     <GlobalStyle />
     <Provider store={store}>
-      <RouterProvider router={routesBasic} />
+      <RouterProvider router={routesBasic}>
+        <App />
+      </RouterProvider>
     </Provider>
   </React.StrictMode>
 );
