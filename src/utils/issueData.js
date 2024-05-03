@@ -1,7 +1,8 @@
 const issueData = [
   {
     id: "766436",
-    text: "test1",
+    title: "test1",
+    text: "text",
     status: "Open",
     author: "",
     createday: "2024/5/1",
@@ -9,7 +10,8 @@ const issueData = [
   },
   {
     id: "7574",
-    text: "test2",
+    title: "test2",
+    text: "text",
     status: "Open",
     author: "",
     createday: "2024/5/1",
@@ -17,7 +19,8 @@ const issueData = [
   },
   {
     id: "888",
-    text: "test3",
+    title: "test3",
+    text: "text",
     status: "Open",
     author: "",
     createday: "2024/5/1",

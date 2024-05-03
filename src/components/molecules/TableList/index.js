@@ -99,7 +99,7 @@ export default function TableList() {
           </thead>
           <tbody>
             {todos
-              .filter((value) => value.text.indexOf(filterVal) !== -1)
+              .filter((value) => value.title.indexOf(filterVal) !== -1)
               .map((value) => (
                 <TableTr
                   key={value.id}
@@ -110,8 +110,8 @@ export default function TableList() {
                   <TableTd $minwidth>
                     <input
                       id={value.id}
-                      value={value.name}
-                      name={value.name}
+                      value={value.title}
+                      name={value.title}
                       type="checkbox"
                       defaultChecked={checked[value.id] || false}
                       onClick={(e) => {
@@ -120,7 +120,7 @@ export default function TableList() {
                       }}
                     />
                   </TableTd>
-                  <TableTd $width>{value.text}</TableTd>
+                  <TableTd $width>{value.title}</TableTd>
                   <TableTd>{value.status}</TableTd>
                   <TableTd>{value.author}</TableTd>
                   <TableTd>{value.createday}</TableTd>

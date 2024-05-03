@@ -82,16 +82,21 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
+  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const dispatch = useDispatch();
+
   const handleAddTodo = () => {
-    if (text) {
-      dispatch(addTodo(text));
-      setText("");
-      dispatch(closeModal());
-    }
+    const newTodo = { title, text };
+    dispatch(addTodo(newTodo));
+    setTitle("");
+    setText("");
+    dispatch(closeModal());
   };
   const handleInputChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleInputTextChange = (e) => {
     setText(e.target.value);
   };
   return (
@@ -105,7 +110,7 @@ const ModalBlock = () => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  value={text}
+                  value={title}
                   onChange={handleInputChange}
                 ></Input>
               </TextField>
@@ -113,7 +118,11 @@ const ModalBlock = () => {
             <InputBlock>
               <InputLavel>説明</InputLavel>
               <TextField>
-                <Textarea placeholder="説明を入力してください"></Textarea>
+                <Textarea
+                  placeholder="説明を入力してください"
+                  value={text}
+                  onChange={handleInputTextChange}
+                ></Textarea>
               </TextField>
             </InputBlock>
           </InputArea>

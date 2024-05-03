@@ -12,15 +12,18 @@ const store = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const newId = crypto.getRandomValues(new Uint16Array(10));
+
       const newTodo = {
         id: newId.join(""),
-        text: action.payload,
+        title: action.payload.title,
+        text: action.payload.text,
         author: "MITANI",
         createday: `${year}/${month}/${date}`,
         updateday: `${year}/${month}/${date}`,
       };
 
       state.push(newTodo);
+      console.log(action.payload.text);
     },
     deleteTodo: (state, action) => {
       Object.keys(action.payload).forEach((id) => {
