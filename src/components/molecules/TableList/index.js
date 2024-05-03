@@ -135,7 +135,7 @@ export default function TableList() {
                       name={value.name}
                       type="checkbox"
                       checked={checked[value.id] || false}
-                      onChange={(e) => {
+                      onClick={(e) => {
                         e.stopPropagation();
                         changeCheckbox(value.id);
                       }}
