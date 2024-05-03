@@ -4,7 +4,7 @@ const initialState = {
   isOpen: false,
 };
 
-const store = createSlice({
+const modal = createSlice({
   name: "modal",
   initialState,
   reducers: {
@@ -16,5 +16,5 @@ const store = createSlice({
     },
   },
 });
-export const { openModal, delecloseModalteTodo } = store.actions;
-export default store.reducer;
+export const { openModal, closeModal } = modal.actions;
+export default modal.reducer;

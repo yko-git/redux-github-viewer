@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
-import ModalBlock from "../../organisms/ModalBlock";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, deleteTodo } from "../../../storeSlice";
+import { deleteTodo } from "../../../storeSlice";
+import { openModal } from "../../../modalSlice";
 
 const FilterBlocks = styled.div`
   display: flex;
@@ -45,28 +45,12 @@ const TableTr = styled.tr`
 
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
-  const [text, setText] = useState("");
-  const [checked, setChecked] = useState({});
-  const [modalIsOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
+
   const dispatch = useDispatch();
-
-  const handleInputChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleAddTodo = () => {
-    if (text) {
-      dispatch(addTodo(text));
-      setText("");
-      setIsOpen(false);
-    }
-  };
 
   const changeCheckbox = (id) => {
     // checkboxの解除の処理
@@ -84,23 +68,18 @@ export default function TableList() {
     dispatch(deleteTodo(checked));
   };
 
-  const clickIssue = () => {
-    setIsOpen(true);
-  };
-
   return (
     <>
       <FilterBlocks>
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
-          <ModalBlock
-            value={text}
-            handleInputChange={handleInputChange}
-            handleAddTodo={handleAddTodo}
-            modalIsOpen={modalIsOpen}
-            setIsOpen={setIsOpen}
+          <ButtonLink
+            children="New"
+            variant="true"
+            handleClick={() => {
+              dispatch(openModal());
+            }}
           />
-          <ButtonLink children="New" variant="true" handleClick={openModal} />
           <ButtonLink children="Delete" handleClick={deleteChecked} />
         </ButtonLinks>
       </FilterBlocks>
@@ -125,7 +104,7 @@ export default function TableList() {
                 <TableTr
                   key={value.id}
                   onClick={() => {
-                    clickIssue(value.id);
+                    dispatch(openModal());
                   }}
                 >
                   <TableTd $minwidth>
@@ -134,7 +113,7 @@ export default function TableList() {
                       value={value.name}
                       name={value.name}
                       type="checkbox"
-                      checked={checked[value.id] || false}
+                      defaultChecked={checked[value.id] || false}
                       onClick={(e) => {
                         e.stopPropagation();
                         changeCheckbox(value.id);

@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import ButtonLink from "../../atoms/Button";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../../storeSlice";
+import { closeModal } from "../../../modalSlice";
 
 Modal.setAppElement("#root");
 
-const ModalWrapper = styled(Modal)`
+const ModalWrapper = styled.div`
   width: 60%;
   margin: auto;
   background: rgb(255, 255, 255);
@@ -78,16 +81,22 @@ const CloseLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ModalBlock = ({
-  text,
-  handleInputChange,
-  handleAddTodo,
-  modalIsOpen,
-  setIsOpen,
-}) => {
+const ModalBlock = () => {
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const handleAddTodo = () => {
+    if (text) {
+      dispatch(addTodo(text));
+      setText("");
+      dispatch(closeModal());
+    }
+  };
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
   return (
     <>
-      <ModalWrapper isOpen={modalIsOpen}>
+      <ModalWrapper>
         <ModalInner>
           <ModalTitle>Issueを追加</ModalTitle>
           <InputArea>
@@ -113,7 +122,7 @@ const ModalBlock = ({
               <ButtonLink variant="true" children="作成" />
             </div>
 
-            <CloseLink onClick={() => setIsOpen(false)}>閉じる</CloseLink>
+            <CloseLink onClick={() => dispatch(closeModal())}>閉じる</CloseLink>
           </Buttons>
         </ModalInner>
       </ModalWrapper>
