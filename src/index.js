@@ -6,7 +6,7 @@ import routesBasic from "./routesBasic";
 import { createGlobalStyle } from "styled-components";
 import cssVariables from "./css_variables";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./redux/store";
 import App from "./App";
 
 const variable = cssVariables.variable;

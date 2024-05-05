@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import issueData from "../utils/issueData";
+import issueData from "../../utils/issueData";
 
 const now = new Date();
 const year = now.getFullYear();

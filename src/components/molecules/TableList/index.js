@@ -3,8 +3,8 @@ import { useState } from "react";
 import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo } from "../../../storeSlice";
-import { openModal } from "../../../modalSlice";
+import { deleteTodo } from "../../../redux/storeSlice";
+import { openModal } from "../../../redux/modalSlice";
 
 const FilterBlocks = styled.div`
   display: flex;
