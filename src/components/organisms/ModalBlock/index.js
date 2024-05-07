@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import ButtonLink from "../../atoms/Button";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../../redux/storeSlice";
 import { closeModal } from "../../../redux/modalSlice";
 
@@ -81,10 +81,15 @@ const CloseLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ModalBlock = () => {
+const ModalBlock = ({ listTitle, listText }) => {
+  const todos = useSelector((state) => state.todos);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const dispatch = useDispatch();
+
+  // if (listTitle) {
+  //   setTitle(listTitle);
+  // }
 
   const handleAddTodo = () => {
     const newTodo = { title, text };
@@ -99,6 +104,23 @@ const ModalBlock = () => {
   const handleInputTextChange = (e) => {
     setText(e.target.value);
   };
+
+  let titleInput;
+  if (listTitle) {
+    titleInput = listTitle;
+  } else {
+    titleInput = text;
+  }
+
+  let textInput;
+  if (listText) {
+    textInput = listText;
+  } else {
+    textInput = text;
+  }
+
+  // todos.map((elem) => console.log(elem.id));
+
   return (
     <>
       <ModalWrapper>
@@ -110,7 +132,8 @@ const ModalBlock = () => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  value={title}
+                  value={titleInput}
+                  defaultValue={listTitle}
                   onChange={handleInputChange}
                 ></Input>
               </TextField>
@@ -120,7 +143,7 @@ const ModalBlock = () => {
               <TextField>
                 <Textarea
                   placeholder="説明を入力してください"
-                  value={text}
+                  value={textInput}
                   onChange={handleInputTextChange}
                 ></Textarea>
               </TextField>

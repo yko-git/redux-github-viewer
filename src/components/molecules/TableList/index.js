@@ -77,7 +77,7 @@ export default function TableList() {
             children="New"
             variant="true"
             handleClick={() => {
-              dispatch(openModal());
+              dispatch(openModal([]));
             }}
           />
           <ButtonLink children="Delete" handleClick={deleteChecked} />
@@ -104,7 +104,7 @@ export default function TableList() {
                 <TableTr
                   key={value.id}
                   onClick={() => {
-                    dispatch(openModal());
+                    dispatch(openModal([value.title, value.text]));
                   }}
                 >
                   <TableTd $minwidth>
