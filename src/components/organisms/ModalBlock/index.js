@@ -109,7 +109,7 @@ const ModalBlock = ({ listTitle, listText }) => {
   if (listTitle) {
     titleInput = listTitle;
   } else {
-    titleInput = text;
+    titleInput = title;
   }
 
   let textInput;

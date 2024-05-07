@@ -23,7 +23,7 @@ const store = createSlice({
       };
 
       state.push(newTodo);
-      console.log(action.payload.text);
+      // console.log(action.payload.text);
     },
     deleteTodo: (state, action) => {
       Object.keys(action.payload).forEach((id) => {
