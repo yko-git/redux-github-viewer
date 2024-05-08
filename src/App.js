@@ -4,11 +4,11 @@ import ModalBlock from "./components/organisms/ModalBlock";
 import TabBlock from "./components/organisms/TabBlock";
 
 function App() {
-  const { isOpen, listTitle, listText } = useSelector((store) => store.modal);
+  const { isOpen } = useSelector((store) => store.modal);
 
   return (
     <div className="App">
-      {isOpen && <ModalBlock listTitle={listTitle} listText={listText} />}
+      {isOpen && <ModalBlock />}
       <Header />
       <TabBlock />
     </div>

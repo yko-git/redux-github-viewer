@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import ButtonLink from "../../atoms/Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../../redux/storeSlice";
+import { addTodo } from "../../../redux/todoSlice";
 import { closeModal } from "../../../redux/modalSlice";
 
 Modal.setAppElement("#root");
@@ -81,17 +81,15 @@ const CloseLink = styled(Link)`
   text-decoration: none;
 `;
 
-const ModalBlock = ({ listTitle, listText }) => {
-  const todos = useSelector((state) => state.todos);
+const ModalBlock = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-  // if (listTitle) {
-  //   setTitle(listTitle);
-  // }
+  const { listTitle, listText } = useSelector((store) => store.modal);
 
   const handleAddTodo = () => {
+    debugger;
     const newTodo = { title, text };
     dispatch(addTodo(newTodo));
     setTitle("");
@@ -99,27 +97,19 @@ const ModalBlock = ({ listTitle, listText }) => {
     dispatch(closeModal());
   };
   const handleInputChange = (e) => {
-    setTitle(e.target.value);
+    if (listTitle) {
+      setTitle(listTitle);
+    } else {
+      setTitle(e.target.value);
+    }
   };
   const handleInputTextChange = (e) => {
-    setText(e.target.value);
+    if (listText) {
+      setText(listText);
+    } else {
+      setText(e.target.value);
+    }
   };
-
-  let titleInput;
-  if (listTitle) {
-    titleInput = listTitle;
-  } else {
-    titleInput = title;
-  }
-
-  let textInput;
-  if (listText) {
-    textInput = listText;
-  } else {
-    textInput = text;
-  }
-
-  // todos.map((elem) => console.log(elem.id));
 
   return (
     <>
@@ -132,7 +122,7 @@ const ModalBlock = ({ listTitle, listText }) => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  value={titleInput}
+                  // value={title}
                   defaultValue={listTitle}
                   onChange={handleInputChange}
                 ></Input>
@@ -143,17 +133,19 @@ const ModalBlock = ({ listTitle, listText }) => {
               <TextField>
                 <Textarea
                   placeholder="説明を入力してください"
-                  value={textInput}
+                  // value={text}
+                  defaultValue={listText}
                   onChange={handleInputTextChange}
                 ></Textarea>
               </TextField>
             </InputBlock>
           </InputArea>
           <Buttons>
-            <div onClick={handleAddTodo}>
-              <ButtonLink variant="true" children="作成" />
-            </div>
-
+            <ButtonLink
+              variant="true"
+              children="作成"
+              handleClick={handleAddTodo}
+            />
             <CloseLink onClick={() => dispatch(closeModal())}>閉じる</CloseLink>
           </Buttons>
         </ModalInner>
