@@ -86,10 +86,11 @@ const ModalBlock = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-  const { listTitle, listText } = useSelector((store) => store.modal);
+  const { listTitle, listText, isComplete } = useSelector(
+    (store) => store.modal
+  );
 
   const handleAddTodo = () => {
-    debugger;
     const newTodo = { title, text };
     dispatch(addTodo(newTodo));
     setTitle("");
@@ -140,6 +141,7 @@ const ModalBlock = () => {
               </TextField>
             </InputBlock>
           </InputArea>
+          {isComplete && <p>completeコンポーネントが入ります</p>}
           <Buttons>
             <ButtonLink
               variant="true"

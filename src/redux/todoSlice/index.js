@@ -17,6 +17,7 @@ const store = createSlice({
         id: newId.join(""),
         title: action.payload.title,
         text: action.payload.text,
+        status: action.payload.status,
         author: "MITANI",
         createday: `${year}/${month}/${date}`,
         updateday: `${year}/${month}/${date}`,
@@ -24,6 +25,12 @@ const store = createSlice({
 
       state.push(newTodo);
       // console.log(action.payload.text);
+    },
+    updateTodo: (state, action) => {
+      const todo = state.find((todo) => todo.id === action.payload);
+      if (todo) {
+        todo.completed = !todo.completed;
+      }
     },
     deleteTodo: (state, action) => {
       Object.keys(action.payload).forEach((id) => {

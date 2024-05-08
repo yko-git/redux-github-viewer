@@ -4,6 +4,7 @@ const initialState = {
   isOpen: false,
   listTitle: "",
   listText: "",
+  isComplete: false,
 };
 const modal = createSlice({
   name: "modal",
@@ -13,6 +14,11 @@ const modal = createSlice({
       state.isOpen = true;
       state.listTitle = action.payload[0];
       state.listText = action.payload[1];
+      if (state.listTitle) {
+        state.isComplete = true;
+      } else {
+        state.isComplete = false;
+      }
     },
     closeModal: (state, action) => {
       state.isOpen = false;
