@@ -143,11 +143,19 @@ const ModalBlock = () => {
           </InputArea>
           {isComplete && <p>completeコンポーネントが入ります</p>}
           <Buttons>
-            <ButtonLink
-              variant="true"
-              children="作成"
-              handleClick={handleAddTodo}
-            />
+            {isComplete ? (
+              <ButtonLink
+                variant="true"
+                children="更新"
+                handleClick={handleAddTodo}
+              />
+            ) : (
+              <ButtonLink
+                variant="true"
+                children="作成"
+                handleClick={handleAddTodo}
+              />
+            )}
             <CloseLink onClick={() => dispatch(closeModal())}>閉じる</CloseLink>
           </Buttons>
         </ModalInner>
