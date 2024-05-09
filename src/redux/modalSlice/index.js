@@ -4,6 +4,7 @@ const initialState = {
   isOpen: false,
   listTitle: "",
   listText: "",
+  listStatus: "Open",
   isComplete: false,
 };
 const modal = createSlice({

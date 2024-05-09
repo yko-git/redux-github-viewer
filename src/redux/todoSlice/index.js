@@ -24,13 +24,15 @@ const store = createSlice({
       };
 
       state.push(newTodo);
-      // console.log(action.payload.text);
     },
     updateTodo: (state, action) => {
-      const todo = state.find((todo) => todo.id === action.payload);
-      if (todo) {
-        todo.completed = !todo.completed;
-      }
+      Object.keys(action.payload).forEach((title) => {
+        const todo = state.findIndex((it) => it.title === title);
+        console.log(todo);
+        // if (todo) {
+        //   todo.completed = !todo.completed;
+        // }
+      });
     },
     deleteTodo: (state, action) => {
       Object.keys(action.payload).forEach((id) => {
@@ -42,5 +44,5 @@ const store = createSlice({
     },
   },
 });
-export const { addTodo, deleteTodo } = store.actions;
+export const { addTodo, updateTodo, deleteTodo } = store.actions;
 export default store.reducer;

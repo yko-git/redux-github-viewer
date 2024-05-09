@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import ButtonLink from "../../atoms/Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../../redux/todoSlice";
+import { addTodo, updateTodo } from "../../../redux/todoSlice";
 import { closeModal } from "../../../redux/modalSlice";
 
 Modal.setAppElement("#root");
@@ -84,6 +84,10 @@ const CloseLink = styled(Link)`
 const ModalBlock = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [issueStatus, setIssueStatus] = useState({
+    status: "Open",
+  });
+
   const dispatch = useDispatch();
 
   const { listTitle, listText, isComplete } = useSelector(
@@ -97,6 +101,15 @@ const ModalBlock = () => {
     setText("");
     dispatch(closeModal());
   };
+
+  const handleUpdateTodo = () => {
+    setTitle(title);
+    setText(text);
+    const newTodo = { title, text, issueStatus };
+    dispatch(updateTodo(newTodo));
+    dispatch(closeModal());
+  };
+
   const handleInputChange = (e) => {
     if (listTitle) {
       setTitle(listTitle);
@@ -110,6 +123,10 @@ const ModalBlock = () => {
     } else {
       setText(e.target.value);
     }
+  };
+
+  const handleSelectForm = (e) => {
+    setIssueStatus(e.target.value);
   };
 
   return (
@@ -141,13 +158,30 @@ const ModalBlock = () => {
               </TextField>
             </InputBlock>
           </InputArea>
-          {isComplete && <p>completeコンポーネントが入ります</p>}
+          {isComplete && (
+            <>
+              <InputLavel>
+                <div>
+                  <label htmlFor="status">ステータス</label>
+                </div>
+                <select
+                  id="status"
+                  name="status"
+                  value={issueStatus.status}
+                  onChange={handleSelectForm}
+                >
+                  <option value="Open">Open</option>
+                  <option value="Close">Close</option>
+                </select>
+              </InputLavel>
+            </>
+          )}
           <Buttons>
             {isComplete ? (
               <ButtonLink
                 variant="true"
                 children="更新"
-                handleClick={handleAddTodo}
+                handleClick={handleUpdateTodo}
               />
             ) : (
               <ButtonLink
