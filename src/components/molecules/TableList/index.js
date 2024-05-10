@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import issueData from "../../../utils/issueData";
 import { useState } from "react";
 import FilterForm from "../FilterForm";
 import ButtonLink from "../../atoms/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTodo } from "../../../redux/todoSlice";
+import { openModal } from "../../../redux/modalSlice";
 
 const FilterBlocks = styled.div`
   display: flex;
@@ -37,16 +39,48 @@ const TableTd = styled.td`
   width: ${(props) => (props.$width ? "140rem" : "auto")};
   ${(props) => `width: ${props.width}`};
 `;
+const TableTr = styled.tr`
+  cursor: pointer;
+`;
 
-export default function TableList({}) {
+export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
+
+  const [checked, setChecked] = useState({});
+
+  const todos = useSelector((state) => state.todos);
+
+  const dispatch = useDispatch();
+
+  const changeCheckbox = (id) => {
+    // checkboxの解除の処理
+    if (checked[id]) {
+      const newChecked = JSON.parse(JSON.stringify(checked));
+      delete newChecked[id];
+      setChecked(newChecked);
+      return;
+    }
+
+    setChecked({ ...checked, [id]: true });
+  };
+
+  const deleteChecked = () => {
+    dispatch(deleteTodo(checked));
+  };
+
   return (
     <>
       <FilterBlocks>
         <FilterForm filterVal={filterVal} setFilterVal={setFilterVal} />
         <ButtonLinks>
-          <ButtonLink primary name="New" />
-          <ButtonLink name="Delete" />
+          <ButtonLink
+            children="New"
+            variant="true"
+            handleClick={() => {
+              dispatch(openModal([]));
+            }}
+          />
+          <ButtonLink children="Delete" handleClick={deleteChecked} />
         </ButtonLinks>
       </FilterBlocks>
       <TableWrapper>
@@ -64,19 +98,34 @@ export default function TableList({}) {
             </tr>
           </thead>
           <tbody>
-            {issueData
-              .filter((value) => value.name.indexOf(filterVal) !== -1)
+            {todos
+              .filter((value) => value.title.indexOf(filterVal) !== -1)
               .map((value) => (
-                <tr>
+                <TableTr
+                  key={value.id}
+                  onClick={() => {
+                    dispatch(openModal([value.title, value.text]));
+                  }}
+                >
                   <TableTd $minwidth>
-                    <input id={value.id} type="checkbox"></input>
+                    <input
+                      id={value.id}
+                      value={value.title}
+                      name={value.title}
+                      type="checkbox"
+                      defaultChecked={checked[value.id] || false}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        changeCheckbox(value.id);
+                      }}
+                    />
                   </TableTd>
-                  <TableTd $width>{value.name}</TableTd>
+                  <TableTd $width>{value.title}</TableTd>
                   <TableTd>{value.status}</TableTd>
                   <TableTd>{value.author}</TableTd>
                   <TableTd>{value.createday}</TableTd>
                   <TableTd>{value.updateday}</TableTd>
-                </tr>
+                </TableTr>
               ))}
           </tbody>
         </Table>

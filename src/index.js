@@ -5,6 +5,9 @@ import { RouterProvider } from "react-router-dom";
 import routesBasic from "./routesBasic";
 import { createGlobalStyle } from "styled-components";
 import cssVariables from "./css_variables";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import App from "./App";
 
 const variable = cssVariables.variable;
 
@@ -29,7 +32,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RouterProvider router={routesBasic} />
+    <Provider store={store}>
+      <RouterProvider router={routesBasic}>
+        <App />
+      </RouterProvider>
+    </Provider>
   </React.StrictMode>
 );
 
