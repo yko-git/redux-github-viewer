@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
+  listId: "",
   listTitle: "",
   listText: "",
   listStatus: "Open",
@@ -13,8 +14,9 @@ const modal = createSlice({
   reducers: {
     openModal: (state, action) => {
       state.isOpen = true;
-      state.listTitle = action.payload[0];
-      state.listText = action.payload[1];
+      state.listId = action.payload[0];
+      state.listTitle = action.payload[1];
+      state.listText = action.payload[2];
       if (state.listTitle) {
         state.isComplete = true;
       } else {

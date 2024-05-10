@@ -82,45 +82,39 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const { listId, listTitle, listText, isComplete } = useSelector(
+    (store) => store.modal
+  );
+
+  const [id, setId] = useState(listId);
+  const [title, setTitle] = useState(listTitle);
+  const [text, setText] = useState(listText);
   const [issueStatus, setIssueStatus] = useState({
     status: "Open",
   });
 
   const dispatch = useDispatch();
 
-  const { listTitle, listText, isComplete } = useSelector(
-    (store) => store.modal
-  );
-
   const handleAddTodo = () => {
-    const newTodo = { title, text };
+    const newTodo = { id, title, text };
     dispatch(addTodo(newTodo));
+    setId("");
     setTitle("");
     setText("");
     dispatch(closeModal());
   };
 
   const handleUpdateTodo = () => {
-    const newTodo = { title, text, issueStatus };
+    const newTodo = { id, title, text, issueStatus };
     dispatch(updateTodo(newTodo));
     dispatch(closeModal());
   };
 
   const handleInputChange = (e) => {
-    if (listTitle) {
-      setTitle(listTitle);
-    } else {
-      setTitle(e.target.value);
-    }
+    setTitle(e.target.value);
   };
   const handleInputTextChange = (e) => {
-    if (listText) {
-      setText(listText);
-    } else {
-      setText(e.target.value);
-    }
+    setText(e.target.value);
   };
 
   const handleSelectForm = (e) => {
