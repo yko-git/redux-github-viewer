@@ -5,7 +5,7 @@ const initialState = {
   listId: "",
   listTitle: "",
   listText: "",
-  listStatus: "Open",
+  listStatus: "",
   isComplete: false,
 };
 const modal = createSlice({
@@ -13,10 +13,12 @@ const modal = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
+      console.log(action.payload);
       state.isOpen = true;
       state.listId = action.payload[0];
       state.listTitle = action.payload[1];
       state.listText = action.payload[2];
+      state.listStatus = action.payload[3];
       if (state.listTitle) {
         state.isComplete = true;
       } else {

@@ -104,7 +104,14 @@ export default function TableList() {
                 <TableTr
                   key={value.id}
                   onClick={() => {
-                    dispatch(openModal([value.id, value.title, value.text]));
+                    dispatch(
+                      openModal([
+                        value.id,
+                        value.title,
+                        value.text,
+                        value.status,
+                      ])
+                    );
                   }}
                 >
                   <TableTd $minwidth>

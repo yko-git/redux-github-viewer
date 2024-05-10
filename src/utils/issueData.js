@@ -3,7 +3,7 @@ const issueData = [
     id: "766436",
     title: "test1",
     text: "text",
-    status: "Open",
+    status: "Close",
     author: "",
     createday: "2024/5/1",
     updateday: "2024/5/1",

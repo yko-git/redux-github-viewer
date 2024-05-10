@@ -30,6 +30,7 @@ const store = createSlice({
       if (index) {
         index.title = action.payload.title;
         index.text = action.payload.text;
+        index.status = action.payload.issueStatus;
       }
     },
     deleteTodo: (state, action) => {

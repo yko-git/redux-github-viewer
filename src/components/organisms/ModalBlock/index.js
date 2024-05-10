@@ -82,21 +82,19 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
-  const { listId, listTitle, listText, isComplete } = useSelector(
+  const { listId, listTitle, listText, listStatus, isComplete } = useSelector(
     (store) => store.modal
   );
 
   const [id, setId] = useState(listId);
   const [title, setTitle] = useState(listTitle);
   const [text, setText] = useState(listText);
-  const [issueStatus, setIssueStatus] = useState({
-    status: "Open",
-  });
+  const [issueStatus, setIssueStatus] = useState(listStatus);
 
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
-    const newTodo = { id, title, text };
+    const newTodo = { id, title, text, issueStatus };
     dispatch(addTodo(newTodo));
     setId("");
     setTitle("");
@@ -159,7 +157,7 @@ const ModalBlock = () => {
                 <select
                   id="status"
                   name="status"
-                  value={issueStatus.status}
+                  defaultValue={listStatus}
                   onChange={handleSelectForm}
                 >
                   <option value="Open">Open</option>
