@@ -26,13 +26,8 @@ const store = createSlice({
       state.push(newTodo);
     },
     updateTodo: (state, action) => {
-      Object.keys(action.payload).forEach((title) => {
-        const todo = state.findIndex((it) => it.title === title);
-        console.log(todo);
-        // if (todo) {
-        //   todo.completed = !todo.completed;
-        // }
-      });
+      // const todo = state.todo.find((value) => value.id === action.payload.id);
+      console.log(action);
     },
     deleteTodo: (state, action) => {
       Object.keys(action.payload).forEach((id) => {

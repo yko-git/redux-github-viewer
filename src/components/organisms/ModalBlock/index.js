@@ -103,8 +103,6 @@ const ModalBlock = () => {
   };
 
   const handleUpdateTodo = () => {
-    setTitle(title);
-    setText(text);
     const newTodo = { title, text, issueStatus };
     dispatch(updateTodo(newTodo));
     dispatch(closeModal());
