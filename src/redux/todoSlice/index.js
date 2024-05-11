@@ -26,11 +26,11 @@ const store = createSlice({
       state.push(newTodo);
     },
     updateTodo: (state, action) => {
-      const index = state.find((it) => it.id === action.payload.id);
-      if (index) {
-        index.title = action.payload.title;
-        index.text = action.payload.text;
-        index.status = action.payload.issueStatus;
+      const todo = state.find((it) => it.id === action.payload.id);
+      if (todo) {
+        todo.title = action.payload.title;
+        todo.text = action.payload.text;
+        todo.status = action.payload.issueStatus;
       }
     },
     deleteTodo: (state, action) => {
