@@ -46,6 +46,7 @@ const TableTr = styled.tr`
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
 
+  const [allCheck, setAllCheck] = useState(false);
   const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
@@ -60,12 +61,25 @@ export default function TableList() {
       setChecked(newChecked);
       return;
     }
-
+    console.log("checkしました");
     setChecked({ ...checked, [id]: true });
   };
 
   const deleteChecked = () => {
     dispatch(deleteTodo(checked));
+  };
+
+  const allChecked = () => {
+    if (allCheck) {
+      setAllCheck(false);
+      return;
+    }
+    const newIds = todos.reduce((target, value) => {
+      target[value.id] = true;
+      return target;
+    }, {});
+    setChecked(newIds);
+    setAllCheck(true);
   };
 
   return (
@@ -88,7 +102,11 @@ export default function TableList() {
           <thead>
             <tr>
               <TableTh $minwidth>
-                <input type="checkbox"></input>
+                <input
+                  type="checkbox"
+                  checked={allCheck}
+                  onClick={allChecked}
+                ></input>
               </TableTh>
               <TableTh></TableTh>
               <TableTh>ステータス</TableTh>
@@ -120,7 +138,7 @@ export default function TableList() {
                       value={value.title}
                       name={value.title}
                       type="checkbox"
-                      defaultChecked={checked[value.id] || false}
+                      // defaultChecked={checked[value.id] || false}
                       onClick={(e) => {
                         e.stopPropagation();
                         changeCheckbox(value.id);
