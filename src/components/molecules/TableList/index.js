@@ -77,7 +77,7 @@ export default function TableList() {
             children="New"
             variant="true"
             handleClick={() => {
-              dispatch(openModal([]));
+              dispatch(openModal({}));
             }}
           />
           <ButtonLink children="Delete" handleClick={deleteChecked} />
@@ -105,12 +105,12 @@ export default function TableList() {
                   key={value.id}
                   onClick={() => {
                     dispatch(
-                      openModal([
-                        value.id,
-                        value.title,
-                        value.text,
-                        value.status,
-                      ])
+                      openModal({
+                        listId: value.id,
+                        listTitle: value.title,
+                        listText: value.text,
+                        listStatus: value.status,
+                      })
                     );
                   }}
                 >

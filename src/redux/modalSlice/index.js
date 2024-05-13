@@ -8,22 +8,23 @@ const initialState = {
   listStatus: "",
   isComplete: false,
 };
+
 const modal = createSlice({
   name: "modal",
   initialState,
   reducers: {
     openModal: (state, action) => {
-      console.log(action.payload);
       state.isOpen = true;
-      state.listId = action.payload[0];
-      state.listTitle = action.payload[1];
-      state.listText = action.payload[2];
-      state.listStatus = action.payload[3];
+      state.listId = action.payload.listId;
+      state.listTitle = action.payload.listTitle;
+      state.listText = action.payload.listText;
+      state.listStatus = action.payload.listStatus;
       if (state.listTitle) {
         state.isComplete = true;
       } else {
         state.isComplete = false;
       }
+      console.log(action.payload);
     },
     closeModal: (state, action) => {
       state.isOpen = false;
