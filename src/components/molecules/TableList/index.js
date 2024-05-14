@@ -62,7 +62,6 @@ export default function TableList() {
       return;
     }
     console.log("checkしました");
-    setAllCheck(true);
     setChecked({ ...checked, [id]: true });
   };
 
@@ -139,7 +138,7 @@ export default function TableList() {
                       value={value.title}
                       name={value.title}
                       type="checkbox"
-                      checked={allCheck}
+                      checked={checked[value.id] || allCheck}
                       // defaultChecked={checked[value.id] || false}
                       onClick={(e) => {
                         e.stopPropagation();
