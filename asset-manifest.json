@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/redux-github-viewer/static/js/main.25589cf0.js",
+    "main.js": "/redux-github-viewer/static/js/main.3bb55507.js",
     "static/js/453.80297d45.chunk.js": "/redux-github-viewer/static/js/453.80297d45.chunk.js",
     "index.html": "/redux-github-viewer/index.html",
-    "main.25589cf0.js.map": "/redux-github-viewer/static/js/main.25589cf0.js.map",
+    "main.3bb55507.js.map": "/redux-github-viewer/static/js/main.3bb55507.js.map",
     "453.80297d45.chunk.js.map": "/redux-github-viewer/static/js/453.80297d45.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.25589cf0.js"
+    "static/js/main.3bb55507.js"
   ]
 }
