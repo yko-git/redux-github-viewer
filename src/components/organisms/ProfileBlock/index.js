@@ -26,28 +26,26 @@ const ProfileImage = styled.img`
 export default function ProfileBlock() {
   const profile = useSelector((state) => state.profile);
   return (
-    <>
-      <Wrapper>
-        <h1>Profile</h1>
-        <FlexBlock>
-          <BlockInner>
-            <h4>プロフィール</h4>
-            <div>
-              <ProfileImage src={profile.imageUrl} alt="プロフィール" />
-            </div>
-          </BlockInner>
-          <BlockInner>
-            <div>
-              <h4>ユーザ名</h4>
-              <div>{profile.name}</div>
-            </div>
-            <div>
-              <h4>メールアドレス</h4>
-              <div>{profile.email}</div>
-            </div>
-          </BlockInner>
-        </FlexBlock>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <h1>Profile</h1>
+      <FlexBlock>
+        <BlockInner>
+          <h4>プロフィール</h4>
+          <div>
+            <ProfileImage src={profile.imageUrl} alt="プロフィール" />
+          </div>
+        </BlockInner>
+        <BlockInner>
+          <div>
+            <h4>ユーザ名</h4>
+            <div>{profile.name}</div>
+          </div>
+          <div>
+            <h4>メールアドレス</h4>
+            <div>{profile.email}</div>
+          </div>
+        </BlockInner>
+      </FlexBlock>
+    </Wrapper>
   );
 }

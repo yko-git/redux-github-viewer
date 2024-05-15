@@ -8,10 +8,8 @@ const Wrapper = styled.div`
 
 export default function PullRequestBlock() {
   return (
-    <>
-      <Wrapper>
-        <h1>PullRequest</h1>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <h1>PullRequest</h1>
+    </Wrapper>
   );
 }

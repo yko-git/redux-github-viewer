@@ -61,7 +61,6 @@ export default function TableList() {
       setChecked(newChecked);
       return;
     }
-    console.log("checkしました");
     setChecked({ ...checked, [id]: true });
   };
 
