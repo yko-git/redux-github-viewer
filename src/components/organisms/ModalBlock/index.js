@@ -20,6 +20,9 @@ const ModalWrapper = styled.div`
   outline: none;
   padding: 20px;
   border: 1px solid rgb(204, 204, 204);
+  @media screen and (max-width: 767px) {
+    width: 80%;
+  }
 `;
 
 const ModalInner = styled.div`
