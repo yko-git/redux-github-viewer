@@ -73,7 +73,7 @@ export default function TableList() {
       setAllCheck(false);
       return;
     }
-    const newIds = todos.reduce((target, value) => {
+    const newIds = [...todos].reduce((target, value) => {
       target[value.id] = true;
       return target;
     }, {});
