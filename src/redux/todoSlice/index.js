@@ -6,7 +6,7 @@ const year = now.getFullYear();
 const month = now.getMonth() + 1;
 const date = now.getDate();
 
-const store = createSlice({
+const todo = createSlice({
   name: "todos",
   initialState: issueData,
   reducers: {
@@ -43,5 +43,5 @@ const store = createSlice({
     },
   },
 });
-export const { addTodo, updateTodo, deleteTodo } = store.actions;
-export default store.reducer;
+export const { addTodo, updateTodo, deleteTodo } = todo.actions;
+export default todo.reducer;
