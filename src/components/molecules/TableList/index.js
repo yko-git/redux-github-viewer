@@ -41,6 +41,9 @@ const TableTd = styled.td`
 `;
 const TableTr = styled.tr`
   cursor: pointer;
+  &:hover {
+    background: rgba(198, 218, 230, 0.25);
+  }
 `;
 
 export default function TableList() {
@@ -66,6 +69,7 @@ export default function TableList() {
 
   const deleteChecked = () => {
     dispatch(deleteTodo(checked));
+    setAllCheck(false);
   };
 
   const allChecked = () => {

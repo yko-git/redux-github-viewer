@@ -49,6 +49,11 @@ const TextField = styled.div`
   border-radius: 6px;
   border: 1px solid rgb(225, 228, 232);
 `;
+const TextAreaField = styled.div`
+  border-radius: 6px;
+  border: 1px solid rgb(225, 228, 232);
+  min-height: 150px;
+`;
 
 const Input = styled.input`
   padding: 8px;
@@ -59,9 +64,7 @@ const Input = styled.input`
   width: 100%;
 `;
 
-const Textarea = styled(Input)`
-  min-height: 150px;
-`;
+const Textarea = styled(Input)``;
 
 const Buttons = styled.div`
   display: flex;
@@ -130,7 +133,6 @@ const ModalBlock = () => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  // value={title}
                   defaultValue={listTitle}
                   onChange={handleInputChange}
                 ></Input>
@@ -138,14 +140,13 @@ const ModalBlock = () => {
             </InputBlock>
             <InputBlock>
               <InputLavel>説明</InputLavel>
-              <TextField>
+              <TextAreaField>
                 <Textarea
                   placeholder="説明を入力してください"
-                  // value={text}
                   defaultValue={listText}
                   onChange={handleInputTextChange}
                 ></Textarea>
-              </TextField>
+              </TextAreaField>
             </InputBlock>
           </InputArea>
           {isComplete && (
