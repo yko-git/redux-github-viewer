@@ -77,11 +77,12 @@ export default function TableList() {
       setAllCheck(false);
       return;
     }
-    const newIds = [...todos].reduce((target, value) => {
+    const newTodos = [...todos];
+    const newTodosObj = newTodos.reduce((target, value) => {
       target[value.id] = true;
       return target;
     }, {});
-    setChecked(newIds);
+    setChecked(newTodosObj);
     setAllCheck(true);
   };
 
