@@ -93,12 +93,12 @@ const ModalBlock = () => {
   const [id, setId] = useState(form.id);
   const [title, setTitle] = useState(form.title);
   const [text, setText] = useState(form.text);
-  const [issueStatus, setIssueStatus] = useState(form.status);
+  const [status, setIssueStatus] = useState(form.status);
 
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
-    const newTodo = { id, title, text, issueStatus };
+    const newTodo = { id, title, text, status };
     dispatch(addTodo(newTodo));
     setId("");
     setTitle("");
@@ -107,7 +107,7 @@ const ModalBlock = () => {
   };
 
   const handleUpdateTodo = () => {
-    const newTodo = { id, title, text, issueStatus };
+    const newTodo = { id, title, text, status };
     dispatch(updateTodo(newTodo));
     dispatch(closeModal());
   };

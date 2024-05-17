@@ -7,7 +7,7 @@ const initialState = {
     id: "",
     title: "",
     text: "",
-    status: "",
+    status: "Open",
   },
 };
 

@@ -17,7 +17,7 @@ const todo = createSlice({
         id: newId.join(""),
         title: action.payload.title,
         text: action.payload.text,
-        status: action.payload.status,
+        status: "Open",
         author: "MITANI",
         createday: `${year}/${month}/${date}`,
         updateday: `${year}/${month}/${date}`,
@@ -30,7 +30,7 @@ const todo = createSlice({
       if (todo) {
         todo.title = action.payload.title;
         todo.text = action.payload.text;
-        todo.status = action.payload.issueStatus;
+        todo.status = action.payload.status;
       }
     },
     deleteTodo: (state, action) => {
