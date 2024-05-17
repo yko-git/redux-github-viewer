@@ -5,8 +5,8 @@ const issueData = [
     text: "text",
     status: "Close",
     author: "",
-    createday: "2024/5/1",
-    updateday: "2024/5/1",
+    createday: "2024-04-18",
+    updateday: "2024-04-18",
   },
   {
     id: "7574",
@@ -14,8 +14,8 @@ const issueData = [
     text: "text",
     status: "Open",
     author: "",
-    createday: "2024/5/1",
-    updateday: "2024/5/1",
+    createday: "2024-04-18",
+    updateday: "2024-04-18",
   },
   {
     id: "888",
@@ -23,8 +23,8 @@ const issueData = [
     text: "text",
     status: "Open",
     author: "",
-    createday: "2024/5/1",
-    updateday: "2024/5/1",
+    createday: "2024-04-18",
+    updateday: "2024-04-18",
   },
 ];
 
