@@ -3,8 +3,8 @@ import issueData from "../../utils/issueData";
 
 const now = new Date();
 const year = now.getFullYear();
-const month = now.getMonth().toString().padStart(2, "0");
-const date = now.getDate().toString().padStart(2, "0");
+const month = now.getMonth() + 1;
+const date = now.getDate().toString().padStart(2, 0);
 
 const todo = createSlice({
   name: "todos",
@@ -19,8 +19,8 @@ const todo = createSlice({
         text: action.payload.text,
         status: "Open",
         author: "MITANI",
-        createday: `${year}-${month}-${date}`,
-        updateday: `${year}-${month}-${date}`,
+        createday: `${date}-${month.toString().padStart(2, 0)}-${year}`,
+        updateday: `${date}-${month.toString().padStart(2, 0)}-${year}`,
       };
 
       state.push(newTodo);
