@@ -75,6 +75,7 @@ export default function TableList() {
   const allChecked = () => {
     if (allCheck) {
       setAllCheck(false);
+      setChecked({});
       return;
     }
     const newTodosObj = todos.reduce((acc, value) => {
