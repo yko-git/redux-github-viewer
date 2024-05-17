@@ -88,14 +88,12 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
-  const { listId, listTitle, listText, listStatus, isComplete } = useSelector(
-    (store) => store.modal
-  );
+  const { form, isComplete } = useSelector((store) => store.modal);
 
-  const [id, setId] = useState(listId);
-  const [title, setTitle] = useState(listTitle);
-  const [text, setText] = useState(listText);
-  const [issueStatus, setIssueStatus] = useState(listStatus);
+  const [id, setId] = useState(form.id);
+  const [title, setTitle] = useState(form.title);
+  const [text, setText] = useState(form.text);
+  const [issueStatus, setIssueStatus] = useState(form.status);
 
   const dispatch = useDispatch();
 
@@ -136,7 +134,7 @@ const ModalBlock = () => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  defaultValue={listTitle}
+                  defaultValue={form.title}
                   onChange={handleInputChange}
                 ></Input>
               </TextField>
@@ -146,7 +144,7 @@ const ModalBlock = () => {
               <TextAreaField>
                 <Textarea
                   placeholder="説明を入力してください"
-                  defaultValue={listText}
+                  defaultValue={form.text}
                   onChange={handleInputTextChange}
                 ></Textarea>
               </TextAreaField>
@@ -161,7 +159,7 @@ const ModalBlock = () => {
                 <select
                   id="status"
                   name="status"
-                  defaultValue={listStatus}
+                  defaultValue={form.status}
                   onChange={handleSelectForm}
                 >
                   <option value="Open">Open</option>

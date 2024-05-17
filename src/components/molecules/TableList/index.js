@@ -53,6 +53,7 @@ export default function TableList() {
   const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
+  const form = useSelector((store) => store.modal);
 
   const dispatch = useDispatch();
 
@@ -77,10 +78,8 @@ export default function TableList() {
       setAllCheck(false);
       return;
     }
-    const newTodos = [...todos];
-    const newTodosObj = newTodos.reduce((target, value) => {
-      target[value.id] = true;
-      return target;
+    const newTodosObj = todos.reduce((acc, value) => {
+      return { ...acc, [value.id]: true };
     }, {});
     setChecked(newTodosObj);
     setAllCheck(true);
@@ -128,10 +127,10 @@ export default function TableList() {
                   onClick={() => {
                     dispatch(
                       openModal({
-                        listId: value.id,
-                        listTitle: value.title,
-                        listText: value.text,
-                        listStatus: value.status,
+                        id: value.id,
+                        title: value.title,
+                        text: value.text,
+                        status: value.status,
                       })
                     );
                   }}
@@ -143,7 +142,6 @@ export default function TableList() {
                       name={value.title}
                       type="checkbox"
                       checked={checked[value.id] || allCheck}
-                      // defaultChecked={checked[value.id] || false}
                       onClick={(e) => {
                         e.stopPropagation();
                         changeCheckbox(value.id);
