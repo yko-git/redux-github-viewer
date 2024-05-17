@@ -24,6 +24,10 @@ const NavListLink = styled(Link)`
   text-decoration: none;
   padding: 8px 15px;
   font-size: 1rem;
+  &:hover {
+    background: rgb(3, 102, 214);
+    color: white;
+  }
 `;
 
 const links = [
