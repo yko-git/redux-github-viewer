@@ -17,7 +17,9 @@ const ButtonLinks = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  overflow: scroll;
+  @media (max-width: 768px) {
+    overflow: scroll;
+  }
 `;
 const Table = styled.table`
   border: 1px solid rgb(225, 228, 232);
