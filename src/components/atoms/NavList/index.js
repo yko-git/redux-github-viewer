@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavListArea = styled.ul`
   position: absolute;
+  top: 50px;
   right: 16px;
   width: 200px;
   padding: 8px 0;
@@ -21,7 +22,7 @@ const NavListLink = styled(Link)`
   color: #333;
   list-style: none;
   text-decoration: none;
-  padding: 8px;
+  padding: 8px 15px;
   font-size: 1rem;
 `;
 
