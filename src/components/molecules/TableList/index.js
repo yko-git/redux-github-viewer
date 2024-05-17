@@ -53,7 +53,6 @@ export default function TableList() {
   const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
-  const form = useSelector((store) => store.modal);
 
   const dispatch = useDispatch();
 
