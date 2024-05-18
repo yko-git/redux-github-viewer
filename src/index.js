@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Lato, "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
     font-size: ${variable.textSize};
     color: ${variable.textColor};
     line-height: ${variable.lineHeight};

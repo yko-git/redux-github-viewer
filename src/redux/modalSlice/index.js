@@ -2,24 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  listTitle: "",
-  listText: "",
-  listStatus: "Open",
-  isComplete: false,
+  form: {
+    id: "",
+    title: "",
+    text: "",
+    status: "Open",
+  },
 };
+
 const modal = createSlice({
   name: "modal",
   initialState,
   reducers: {
     openModal: (state, action) => {
       state.isOpen = true;
-      state.listTitle = action.payload[0];
-      state.listText = action.payload[1];
-      if (state.listTitle) {
-        state.isComplete = true;
-      } else {
-        state.isComplete = false;
-      }
+      state.form.id = action.payload.id;
+      state.form.title = action.payload.title;
+      state.form.text = action.payload.text;
+      state.form.status = action.payload.status;
     },
     closeModal: (state, action) => {
       state.isOpen = false;

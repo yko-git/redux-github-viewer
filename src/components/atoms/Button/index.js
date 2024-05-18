@@ -17,6 +17,14 @@ const ButtonLink = styled.div`
     props.variant
       ? "2px solid rgb(40, 167, 69)"
       : "2px solid rgb(175, 28, 42)"};
+  &:hover {
+    background: ${(props) =>
+      props.variant ? "rgb(40, 167, 69)" : "rgb(175, 28, 42)"};
+    border-bottom: ${(props) =>
+      props.variant
+        ? "2px solid rgb(32, 132, 55)"
+        : "2px solid rgb(103, 16, 25)"};
+  }
 `;
 
 export default function Button({ children, variant, handleClick }) {

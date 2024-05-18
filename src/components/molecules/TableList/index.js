@@ -17,7 +17,9 @@ const ButtonLinks = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  overflow: scroll;
+  @media (max-width: 768px) {
+    overflow: scroll;
+  }
 `;
 const Table = styled.table`
   border: 1px solid rgb(225, 228, 232);
@@ -41,11 +43,15 @@ const TableTd = styled.td`
 `;
 const TableTr = styled.tr`
   cursor: pointer;
+  &:hover {
+    background: rgba(198, 218, 230, 0.25);
+  }
 `;
 
 export default function TableList() {
   const [filterVal, setFilterVal] = useState("");
 
+  const [allCheck, setAllCheck] = useState(false);
   const [checked, setChecked] = useState({});
 
   const todos = useSelector((state) => state.todos);
@@ -60,12 +66,25 @@ export default function TableList() {
       setChecked(newChecked);
       return;
     }
-
     setChecked({ ...checked, [id]: true });
   };
 
   const deleteChecked = () => {
     dispatch(deleteTodo(checked));
+    setAllCheck(false);
+  };
+
+  const allChecked = () => {
+    if (allCheck) {
+      setAllCheck(false);
+      setChecked({});
+      return;
+    }
+    const newTodosObj = todos.reduce((acc, value) => {
+      return { ...acc, [value.id]: true };
+    }, {});
+    setChecked(newTodosObj);
+    setAllCheck(true);
   };
 
   return (
@@ -77,7 +96,7 @@ export default function TableList() {
             children="New"
             variant="true"
             handleClick={() => {
-              dispatch(openModal([]));
+              dispatch(openModal({}));
             }}
           />
           <ButtonLink children="Delete" handleClick={deleteChecked} />
@@ -88,7 +107,11 @@ export default function TableList() {
           <thead>
             <tr>
               <TableTh $minwidth>
-                <input type="checkbox"></input>
+                <input
+                  type="checkbox"
+                  checked={allCheck}
+                  onClick={allChecked}
+                ></input>
               </TableTh>
               <TableTh></TableTh>
               <TableTh>ステータス</TableTh>
@@ -104,7 +127,14 @@ export default function TableList() {
                 <TableTr
                   key={value.id}
                   onClick={() => {
-                    dispatch(openModal([value.title, value.text]));
+                    dispatch(
+                      openModal({
+                        id: value.id,
+                        title: value.title,
+                        text: value.text,
+                        status: value.status,
+                      })
+                    );
                   }}
                 >
                   <TableTd $minwidth>
@@ -113,7 +143,7 @@ export default function TableList() {
                       value={value.title}
                       name={value.title}
                       type="checkbox"
-                      defaultChecked={checked[value.id] || false}
+                      checked={checked[value.id] || allCheck}
                       onClick={(e) => {
                         e.stopPropagation();
                         changeCheckbox(value.id);

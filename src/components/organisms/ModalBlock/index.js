@@ -20,6 +20,9 @@ const ModalWrapper = styled.div`
   outline: none;
   padding: 20px;
   border: 1px solid rgb(204, 204, 204);
+  @media screen and (max-width: 767px) {
+    width: 80%;
+  }
 `;
 
 const ModalInner = styled.div`
@@ -37,17 +40,22 @@ const InputArea = styled.div`
 `;
 
 const InputBlock = styled.div`
-  padding: 16px;
+  padding: 16px 0;
 `;
 
 const InputLavel = styled.label`
   display: block;
-  padding: 8px 0px;
+  padding: 8px 0;
 `;
 
 const TextField = styled.div`
   border-radius: 6px;
   border: 1px solid rgb(225, 228, 232);
+`;
+const TextAreaField = styled.div`
+  border-radius: 6px;
+  border: 1px solid rgb(225, 228, 232);
+  min-height: 150px;
 `;
 
 const Input = styled.input`
@@ -59,9 +67,7 @@ const Input = styled.input`
   width: 100%;
 `;
 
-const Textarea = styled(Input)`
-  min-height: 150px;
-`;
+const Textarea = styled(Input)``;
 
 const Buttons = styled.div`
   display: flex;
@@ -82,45 +88,35 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [issueStatus, setIssueStatus] = useState({
-    status: "Open",
-  });
+  const { form } = useSelector((store) => store.modal);
+
+  const [id, setId] = useState(form.id);
+  const [title, setTitle] = useState(form.title);
+  const [text, setText] = useState(form.text);
+  const [status, setIssueStatus] = useState(form.status);
 
   const dispatch = useDispatch();
 
-  const { listTitle, listText, isComplete } = useSelector(
-    (store) => store.modal
-  );
-
   const handleAddTodo = () => {
-    const newTodo = { title, text };
+    const newTodo = { id, title, text, status };
     dispatch(addTodo(newTodo));
+    setId("");
     setTitle("");
     setText("");
     dispatch(closeModal());
   };
 
   const handleUpdateTodo = () => {
-    const newTodo = { title, text, issueStatus };
+    const newTodo = { id, title, text, status };
     dispatch(updateTodo(newTodo));
     dispatch(closeModal());
   };
 
   const handleInputChange = (e) => {
-    if (listTitle) {
-      setTitle(listTitle);
-    } else {
-      setTitle(e.target.value);
-    }
+    setTitle(e.target.value);
   };
   const handleInputTextChange = (e) => {
-    if (listText) {
-      setText(listText);
-    } else {
-      setText(e.target.value);
-    }
+    setText(e.target.value);
   };
 
   const handleSelectForm = (e) => {
@@ -138,34 +134,32 @@ const ModalBlock = () => {
               <TextField>
                 <Input
                   placeholder="タイトルを入力してください"
-                  // value={title}
-                  defaultValue={listTitle}
+                  defaultValue={form.title}
                   onChange={handleInputChange}
                 ></Input>
               </TextField>
             </InputBlock>
             <InputBlock>
               <InputLavel>説明</InputLavel>
-              <TextField>
+              <TextAreaField>
                 <Textarea
                   placeholder="説明を入力してください"
-                  // value={text}
-                  defaultValue={listText}
+                  defaultValue={form.text}
                   onChange={handleInputTextChange}
                 ></Textarea>
-              </TextField>
+              </TextAreaField>
             </InputBlock>
           </InputArea>
-          {isComplete && (
+          {id && (
             <>
               <InputLavel>
                 <div>
-                  <label htmlFor="status">ステータス</label>
+                  <InputLavel htmlFor="status">ステータス</InputLavel>
                 </div>
                 <select
                   id="status"
                   name="status"
-                  value={issueStatus.status}
+                  defaultValue={form.status}
                   onChange={handleSelectForm}
                 >
                   <option value="Open">Open</option>
@@ -175,7 +169,7 @@ const ModalBlock = () => {
             </>
           )}
           <Buttons>
-            {isComplete ? (
+            {id ? (
               <ButtonLink
                 variant="true"
                 children="更新"
