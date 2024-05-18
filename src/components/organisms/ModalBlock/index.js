@@ -40,12 +40,12 @@ const InputArea = styled.div`
 `;
 
 const InputBlock = styled.div`
-  padding: 16px;
+  padding: 16px 0;
 `;
 
 const InputLavel = styled.label`
   display: block;
-  padding: 8px 0px;
+  padding: 8px 0;
 `;
 
 const TextField = styled.div`
@@ -154,7 +154,7 @@ const ModalBlock = () => {
             <>
               <InputLavel>
                 <div>
-                  <label htmlFor="status">ステータス</label>
+                  <InputLavel htmlFor="status">ステータス</InputLavel>
                 </div>
                 <select
                   id="status"
