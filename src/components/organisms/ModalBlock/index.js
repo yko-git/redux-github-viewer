@@ -88,7 +88,7 @@ const CloseLink = styled(Link)`
 `;
 
 const ModalBlock = () => {
-  const { form, isComplete } = useSelector((store) => store.modal);
+  const { form } = useSelector((store) => store.modal);
 
   const [id, setId] = useState(form.id);
   const [title, setTitle] = useState(form.title);
@@ -150,7 +150,7 @@ const ModalBlock = () => {
               </TextAreaField>
             </InputBlock>
           </InputArea>
-          {isComplete && (
+          {id && (
             <>
               <InputLavel>
                 <div>
@@ -169,7 +169,7 @@ const ModalBlock = () => {
             </>
           )}
           <Buttons>
-            {isComplete ? (
+            {id ? (
               <ButtonLink
                 variant="true"
                 children="更新"

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  isComplete: false,
   form: {
     id: "",
     title: "",
@@ -21,12 +20,6 @@ const modal = createSlice({
       state.form.title = action.payload.title;
       state.form.text = action.payload.text;
       state.form.status = action.payload.status;
-      if (state.form.title) {
-        state.isComplete = true;
-      } else {
-        state.isComplete = false;
-      }
-      console.log(action.payload);
     },
     closeModal: (state, action) => {
       state.isOpen = false;
